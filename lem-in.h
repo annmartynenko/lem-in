@@ -20,7 +20,9 @@
 # include <sys/stat.h>
 # include "./libft/libft.h"
 
-#define START 1
+# define START 1
+# define END 2
+# define NORMAL 0
 
 typedef struct	s_room
 {
@@ -35,6 +37,7 @@ typedef struct	s_link
 	int rm1;
 	int rm2;
 }				t_link;
+
 typedef struct	s_inf
 {
 	int ants;
@@ -47,11 +50,30 @@ typedef struct	s_inf
 typedef struct		s_fl
 {
 	char			*line;
-	struct s_list	*next;
+	struct s_fl		*next;
 }					t_fl;
 
-void	read_map(char **av, t_inf *info);
-void	exit_l(int c);
-size_t ft_strlen_chr(const char *str, int c);
+typedef	struct		s_node
+{
+	int value;
+	int *edges;
+	int searched;
+	int parent;
+}					t_node;
+
+typedef struct 		s_graph
+{
+	t_node	*nodes;
+	int		*gr;
+	int		start;
+	int		end;
+}					t_graph;
+
+void		read_map(char **av, t_inf *info);
+void		exit_l(char *str);
+size_t		ft_strlen_chr(const char *s, int c);
+void		parsing(t_fl *file, t_inf *info);
+void		make_graph(t_inf *info);
+void		bfs(t_graph *graph, t_inf *info);
 
 #endif

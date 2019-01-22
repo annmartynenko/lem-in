@@ -19,13 +19,16 @@ int	ft_strcmp(const char *s1, const char *s2)
 	unsigned char	*a;
 	unsigned char	*b;
 
-	a = (unsigned char*)s1;
-	b = (unsigned char*)s2;
+	a = (unsigned char *) s1;
+	b = (unsigned char *) s2;
 	i = 0;
 	res = 0;
-	while (a[i] == b[i] && a[i] && b[i])
-		i++;
-	if (a[i] != b[i])
-		res = a[i] - b[i];
+	if (s1 && s2)
+	{
+		while (a[i] && b[i] && a[i] == b[i])
+			i++;
+		if (a[i] != b[i])
+			res = a[i] - b[i];
+	}
 	return (res);
 }

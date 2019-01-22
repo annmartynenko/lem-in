@@ -13,9 +13,9 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-void	exit_l(int c)
+void	exit_l(char *str)
 {
-	ft_printf("ERROR");
-	ft_printf(" %d\n", c);
+	ft_printf("ERROR:");
+	ft_printf(" %s\n", str);
 	exit(0);
 }

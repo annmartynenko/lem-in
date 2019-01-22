@@ -28,9 +28,9 @@ ft_printf/ft_printf.c ft_printf/number.c ft_printf/ft_itoa_base.c \
 ft_printf/ft_putunsnbr.c ft_printf/extra_fun.c ft_printf/unicode.c \
 ft_printf/find_flag.c ft_printf/for_flags.c ft_printf/if_flags.c \
 ft_printf/ft_putstring.c ft_printf/ft_putnumber.c ft_printf/specifier.c \
-ft_printf/ft_strlen.c ft_printf/if_flags_d.c ft_printf/ft_putchar.c \
-ft_printf/ft_putstr.c ft_printf/ft_atoi.c \
-ft_printf/ft_isdigit.c ft_printf/ft_putnbr.c ft_printf/if_flags_ito.c \
+ft_printf/if_flags_d.c ft_printf/ft_putchar.c \
+ft_printf/ft_putstr.c \
+ft_printf/ft_putnbr.c ft_printf/ft_putnbr.c ft_printf/if_flags_ito.c \
 ft_printf/valid.c ft_printf/not_spec.c ft_printf/ft_itoa_base_int.c \
 ft_printf/ft_itoa_unslong.c ft_printf/ft_itoa_max.c ft_printf/ft_putint.c \
 ft_printf/for_add.c ft_printf/for_p.c

@@ -23,7 +23,10 @@ int main(int ac, char **av)
 	info.links = 0;
 	info.link = NULL;
 	if(ac == 2)
+	{
 		read_map(av, &info);
+		make_graph(&info);
+	}
 	else
 		exit(0);
 	return (0);

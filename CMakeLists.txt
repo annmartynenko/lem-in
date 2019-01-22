@@ -8,6 +8,9 @@ add_executable(lem_in
         read_map.c
         exit.c
         ft_strlen_chr.c
+        parsing.c
+        make_graph.c
+        bfs.c
         libft/ft_printf/extra_fun.c
         libft/ft_printf/find_flag.c
         libft/ft_printf/for_add.c

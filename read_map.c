@@ -13,33 +13,6 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-void	parsing(t_fl *file, t_inf *info)
-{
-	int i;
-	int j;
-	char **for_volodya;
-
-	i = 0;
-	j = 0;
-	info->room = (t_room*)malloc(sizeof(t_room) * info->rooms);
-	info->link = (t_link*)malloc(sizeof(t_room) * info->links);
-	while (file && file->next)
-	{
-		if (ft_strcmp(file->line, "##start") == 0)
-		{
-			file = file->next;
-			for_volodya = ft_strsplit(file->line, ' ');
-			info->room[j].name = ft_strdup(for_volodya[0]);
-			info->room[j].x = ft_atoi(for_volodya[1]);
-			info->room[j].y = ft_atoi(for_volodya[2]);
-			info->room[j].s_e = START;
-			printf("%s %d %d\n", info->room[j].name, info->room[j].x, info->room[j].y);
-			exit(0);
-		}
-		file = file->next;
-	}
-}
-
 int 	check_room(char *tmp)
 {
 	int i;
@@ -50,17 +23,17 @@ int 	check_room(char *tmp)
 	if(tmp[0] == '#')
 		return(0);
 	else if(tmp[0] == 'L')
-		exit_l(4);
+		exit_l("forbidden char L");
 	while (tmp[i])
 	{
 		if (tmp[i] != ' ' && (sp == 1 || sp == 2) && !ft_isdigit(tmp[i]))
-			exit_l(3);
+			exit_l("not valid coordinates");
 		if (tmp[i] == ' ')
 			sp++;
 		if	(tmp[i] == '-')
 			return  (0);
 		if (sp > 3)
-			exit_l(5);
+			exit_l("too much spaces");
 		i++;
 	}
 	if (sp == 2)
@@ -76,11 +49,11 @@ void	check_ants(int fd, t_inf *info)
 	i= 0;
 	get_next_line(fd, &tmp);
 	if (!(info->ants = ft_atoi(tmp)))
-		exit_l(1);
+		exit_l("no count of ants");
 	while(tmp[i] && ft_isdigit(tmp[i]))
 		i++;
 	if (tmp[i] != '\0')
-		exit_l(2);
+		exit_l("no count of ants");
 }
 
 int 	check_links(char *tmp)
@@ -99,7 +72,7 @@ int 	check_links(char *tmp)
 		if (tmp[i] == '-')
 			hyphen++;
 		if(hyphen > 1)
-			exit_l(8);
+			exit_l("too much hyphen");
 		i++;
 	}
 	if (hyphen == 0)
@@ -119,7 +92,7 @@ void	read_map(char **av, t_inf *info)
 	check_ants(fd, info);
 	file = (t_fl*)malloc(sizeof(t_fl));
 	buf = file;
-	while(get_next_line(fd, &tmp) > 0)
+	while(get_next_line(fd, &tmp))
 	{
 		info->rooms += check_room(tmp);
 		info->links += check_links(tmp);
@@ -128,7 +101,7 @@ void	read_map(char **av, t_inf *info)
 		file = file->next;
 	}
 	ft_strdel(&tmp);
-	printf("rooms %d, links %d\n", info->rooms, info->links);
-	printf("%s\n", buf->line);
+//	printf("rooms %d, links %d\n", info->rooms, info->links);
+//	printf("%s\n", buf->line);
 	parsing(buf, info);
 }
