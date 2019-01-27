@@ -69,6 +69,18 @@ typedef struct 		s_graph
 	int		end;
 }					t_graph;
 
+typedef struct		s_way
+{
+	int				content;
+	struct s_way	*after;
+}					t_way;
+
+typedef struct		s_ways
+{
+	t_way			*ways;
+	struct s_ways	*next;
+}					t_ways;
+
 void		read_map(char **av, t_inf *info);
 void		exit_l(char *str);
 size_t		ft_strlen_chr(const char *s, int c);

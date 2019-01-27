@@ -67,6 +67,9 @@ void	make_graph(t_inf *info)
 				fill_node(&graph, i, &k, info->link[j].rm1);
 			j++;
 		}
+		(graph)->nodes[i].edges[k] = -1;
+		printf("val %d, edg %d, sear %d, parent %d\n", (graph)->nodes[i].value, (graph)->nodes[i].edges[k], (graph)->nodes[i].searched, (graph)->nodes[i].parent);
+		k++;
 		i++;
 	}
 	find_se(&graph, info);
