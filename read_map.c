@@ -50,6 +50,8 @@ void	check_ants(int fd, t_inf *info)
 	get_next_line(fd, &tmp);
 	if (!(info->ants = ft_atoi(tmp)))
 		exit_l("no count of ants");
+	if (info->ants < 1 || info->ants >= 2147483647)
+		exit_l("number of ants is less than 1 or more than INT_MAX");
 	while(tmp[i] && ft_isdigit(tmp[i]))
 		i++;
 	if (tmp[i] != '\0')
@@ -100,6 +102,8 @@ void	read_map(char **av, t_inf *info)
 		file->next = (t_fl*)malloc(sizeof(t_fl));
 		file = file->next;
 	}
+	if (info->links < 1)
+		exit_l("less than 1 link in the map");
 	ft_strdel(&tmp);
 //	printf("rooms %d, links %d\n", info->rooms, info->links);
 //	printf("%s\n", buf->line);

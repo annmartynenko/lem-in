@@ -42,6 +42,22 @@ void	find_se(t_graph **graph, t_inf * info)
 	printf("end %d: start %d\n", (*graph)->end, (*graph)->start);
 }
 
+int     count_adges(t_inf *info, int i)
+{
+    int j;
+    int len;
+
+    j = 0;
+    len = 0;
+    while (j < info->links)
+    {
+        if (info->link[j].rm1 == i || info->link[j].rm2 == i)
+            len++;
+        j++;
+    }
+    return (len);
+}
+
 void	make_graph(t_inf *info)
 {
 	int i;
@@ -49,14 +65,18 @@ void	make_graph(t_inf *info)
 	int k;
 	t_graph *graph;
 
-	graph = (t_graph*)malloc(sizeof(t_graph));;
+	graph = (t_graph*)malloc(sizeof(t_graph));
 	graph->nodes = (t_node*)malloc(sizeof(t_node) * info->rooms);
 	graph->gr = (int*)malloc(sizeof(int) * info->rooms);
+	graph->end = -1;
+	graph->start = -1;
 	i = 0;
 	while (i < info->rooms)
 	{
 		graph->nodes[i].value = i;
-		graph->nodes[i].edges = (int*)malloc(sizeof(int) * info->rooms);
+		graph->nodes[i].n_edg = count_adges(info, i);
+		printf("number edges for %d = %d\n", i, graph->nodes[i].n_edg);
+		graph->nodes[i].edges = (int*)malloc(sizeof(int) * graph->nodes[i].n_edg + 1);
 		j = 0;
 		k = 0;
 		while (j < info->links)
