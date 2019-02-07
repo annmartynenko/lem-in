@@ -88,7 +88,7 @@ size_t		ft_strlen_chr(const char *s, int c);
 void		parsing(t_fl *file, t_inf *info);
 void		make_graph(t_inf *info);
 void		bfs(t_graph *graph, t_inf *info);
-void        move_ants(t_ways *queue, int numb, t_inf *info);
+void   		move_ants(t_ways *res, int numb, t_inf *info, t_graph *graph);
 void		choose_ways(t_ways *result, t_inf *info);
 
 #endif
