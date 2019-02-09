@@ -106,7 +106,7 @@ void	bfs(t_graph *graph, t_inf *info)
 	{
 		start = queue->ways;
 		printf("WAY ");
-		while (queue->ways->after)
+		while (queue->ways && queue->ways->after)
 		{
 			printf("%s->", info->room[queue->ways->content].name);
 			papa = queue->ways->content;

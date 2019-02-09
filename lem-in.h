@@ -65,7 +65,6 @@ typedef	struct		s_node
 typedef struct 		s_graph
 {
 	t_node	*nodes;
-	int		*gr;
 	int		start;
 	int		end;
 }					t_graph;
@@ -81,6 +80,14 @@ typedef struct		s_ways
 	t_way			*ways;
 	struct s_ways	*next;
 }					t_ways;
+
+typedef struct		s_moving
+{
+	int					ant;
+	int					room;
+	int					way;
+	struct s_moving		*next;
+}					t_moving;
 
 void		read_map(char **av, t_inf *info);
 void		exit_l(char *str);

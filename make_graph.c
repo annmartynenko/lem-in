@@ -67,7 +67,6 @@ void	make_graph(t_inf *info)
 
 	graph = (t_graph*)malloc(sizeof(t_graph));
 	graph->nodes = (t_node*)malloc(sizeof(t_node) * info->rooms);
-	graph->gr = (int*)malloc(sizeof(int) * info->rooms);
 	graph->end = -1;
 	graph->start = -1;
 	i = 0;
