@@ -72,8 +72,8 @@ void	fill_ways(t_way *start, t_ways **result, t_inf *info, t_graph **graph)
 	if (start->content == (*graph)->end)
 	{
 		start = buf;
-		(*graph)->len_way++;
-		if ((*result)->next == NULL && (*graph)->len_way > 1)
+		(*graph)->numb_ways++;
+		if ((*result)->next == NULL && (*graph)->numb_ways > 1)
 		{
 			(*result)->next = (t_ways *) malloc(sizeof(t_ways));
 			(*result) = (*result)->next;
@@ -155,7 +155,7 @@ void	bfs(t_graph *graph, t_inf *info)
 		{
 			printf("FOUND %s\n", info->room[current].name);
             fill_ways(start, &result, info, &graph);
-            printf("len %d\n", graph->len_way);
+            printf("len %d\n", graph->numb_ways);
 		}
 		queue = queue->next;
 	}

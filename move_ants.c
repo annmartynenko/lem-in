@@ -13,103 +13,7 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-//void	lstdelone(t_ways **previous, t_ways **current, t_ways *future)
-//{
-//	if (current && (*current))
-//	{
-//		(*previous) = (future);
-//		free((*current));
-//		(*current) = NULL;
-//	}
-//}
-//
-//void	lstdel(t_way **alst)
-//{
-//	t_way *a;
-//
-//	if (alst && (*alst))
-//	{
-//		while ((*alst) != NULL)
-//		{
-//			a = (*alst)->after;
-//			free((*alst));
-//			(*alst) = a;
-//		}
-//		(*alst) = NULL;
-//	}
-//}
-//
-//int 	lst_len(t_way *lst)
-//{
-//	int i;
-//
-//	i = 0;
-//	while (lst)
-//	{
-//		i++;
-//		lst = lst->after;
-//	}
-//	return (i);
-//}
-
-//void	choose_ways(t_ways *result, t_inf *info)
-//{
-//	t_ways	*previous;
-//	t_ways	*current;
-//	t_ways	*future;
-//	t_ways	*begin;
-//	int		i;
-//	int 	len;
-//
-//	i = 0;
-//	begin = result;
-//	previous = NULL;
-//	current = result;
-//	future = result->next;
-//	printf("a\n");
-//	len = lst_len(current->ways);
-//	while (result)
-//	{
-//		while (current)
-//		{
-//			if (current->ways->content == future->ways->content)
-//				i++;
-//			current->ways = current->ways->after;
-//		}
-//		result = result->next;
-//	}
-	/*
-	while (result)
-	{
-//		printf("A\n");
-//		printf("RESULT: %d\n", result->ways->content);
-		current = result;
-		if (result->next != NULL)
-		{
-			future = result->next;
-			printf("FUTURE: %d\n",  future->ways->content);
-		}
-		printf("PREVIOUS: %d, \n", previous->ways->content);
-		printf("CURRENT: %d, \n", current->ways->content);
-
-		len = lst_len(current->ways);
-		printf("len %d\n", len);
-		while (current->ways)
-		{
-			printf("CURRENT: %d, FUTURE: %d\n", current->ways->content, future->ways->content);
-			if (current->ways->content == future->ways->content)
-				i++;
-			current->ways = current->ways->after;
-		}
-		if (i == len)
-		{
-			lstdel(&current);
-			lstdelone(&previous, &current, future);
-		}
-		result = result->next;
-	}*/
-//}
-int 	*len_ways(t_ways *res, int numb)
+int 	*lenght_ways(t_ways *res, int numb)
 {
 	t_way		*start;
 	int         *len;
@@ -142,142 +46,128 @@ int 	how_much(int *len, int j)
 	int lenght;
 
 	how = 0;
-//	printf("j %d \n", j);
 	lenght = len[j];
 	while (j >= 0)
 	{
 		how += lenght - len[j];
 		j--;
 	}
-//	printf("len %d\n", how);
 	return (how);
 }
 
-//void	other_ants(int ant, int j, t_way **begin, t_inf *info, int star)
-//{
-//	int i;
-//	int k;
-//	t_way	**start;
-//	t_way	**a;
-//
-//	i = 1;
-//	k = 0;
-//	a = begin;
-//	start = begin;
-//	while (i < ant)
-//	{
-//		k = 0;
-//		if (a[k]->content == star)
-//			a[k] = a[k]->after;
-//		if (a[k]->after == NULL)
-//			a[k] = start[k];
-//		while (k <= j)
-//		{
-//			if (a[k]->content == star)
-//				a[k] = a[k]->after;
-//			if (a[k]->after == NULL)
-//				a[k] = start[k];
-//			else
-//				a[k] = a[k]->after;
-//			ft_printf("L");
-//			ft_printf("%d-%s i%d k%d ", i, info->room[a[k]->content].name,i,k);
-//			k++;
-//		}
-//		i++;
-//	}
-//}
-
-void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
+void	print(t_moving *transp, t_way *start, t_inf *info)
 {
-	int i;
-	int k;
-	int d;
-	int j;
-	t_way *buf[graph->len_way];
+	ft_printf("L");
+	ft_printf("%d-%s ", (*transp).ant, info->room[start->content].name);
+	start->ant = (*transp).ant;
+	(*transp).room = start->content;
+}
 
-	i = 0;
+void	first_action(t_moving *transp, t_way **start, t_graph *graph, int *k)
+{
+	while ((*start)->content != transp[(*k)].room)
+		(*start) = (*start)->after;
+	while ((*start)->content == graph->end && transp[(*k)].room == graph->end)
+		(*k)++;
+}
+
+void	fill_buf(t_graph *graph, t_way **start, t_way **buf)
+{
+	int d;
+
 	d = 0;
-	j = 0;
-	k = 0;
-	while (d < graph->len_way)
+	while (d < graph->numb_ways)
 	{
 		buf[d] = start[d];
 		d++;
 	}
+}
+
+void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
+{
+	int k;
+	int d;
+	t_way *buf[graph->numb_ways];
+
+	d = 0;
+	k = 0;
+	fill_buf(graph, start, &buf);
 	while (transp[info->ants - 1].room != graph->end)
 	{
+		if (k == info->ants)
+			k = 0;
 		d = transp[k].way;
 		start[d] = buf[d];
-		while (start[d]->content != transp[k].room)
-			start[d] = start[d]->after;
-		while (start[d]->content == graph->end && transp[k].room == graph->end)
-			k++;
+		first_action(transp, &start[d], graph, &k);
+		if (k == info->ants || (start[d]->ant != -1 && start[d]->ant != transp[k].ant))
+		{
+			ft_printf("\n");
+			k = 0;
+		}
+		d = transp[k].way;
+		start[d] = buf[d];
+		first_action(transp, &start[d], graph, &k);
 		if (start[d]->ant == -1)
 		{
-
-			ft_printf("L");
-			ft_printf("%d-%s\n", transp[k].ant, info->room[start[d]->content].name);
-			graph->nodes[transp[k].ant].room = start[d]->content;
-			start[d]->ant = transp[k].ant;
-			transp[k].room = start[d]->content;
-			k = 0;
+			print(&transp[k], start[d], info);
+			k++;
 		}
 		else if (start[d]->ant == transp[k].ant)
 		{
 			start[d]->ant = -1;
 			start[d] = start[d]->after;
-			ft_printf("L");
-			ft_printf("%d-%s", transp[k].ant, info->room[start[d]->content].name);
-			if (k == info->ants - 1)
-				ft_printf("\n");
-			else
-				ft_printf(" ");
-			graph->nodes[transp[k].ant].room = start[d]->content;
-			start[d]->ant = transp[k].ant;
-			transp[k].room = start[d]->content;
+			print(&transp[k], start[d], info);
 			k++;
 		}
-		if (k == info->ants)
-			k = 0;
 	}
 }
 
-void    move_ants(t_ways *res, t_inf *info, t_graph *graph)
+void	fill_transp(t_moving *transp, t_way **start, int i, int j)
 {
-	t_way	*start[graph->len_way];
-	t_way	*begin[graph->len_way];
-	t_moving	transp[info->ants];
-	int 	*len;
-	int		i;
-	int		j;
-	int		k;
-	int 	ants;
+	(*transp).room = start[j]->content;
+	(*transp).ant = i + 1;
+	(*transp).way = j;
+}
+
+void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res)
+{
+	int i;
 
 	i = 0;
-	j = 0;
-	k = 0;
-	ants = info->ants;
-	len = len_ways(res, graph->len_way);
-	while (i < graph->len_way)
+	while (i < graph->numb_ways)
 	{
 		start[i] = res->ways;
 		begin[i] = res->ways;
 		res = res->next;
 		i++;
 	}
+}
+
+void	if_start(t_way **start, t_graph *graph, int j)
+{
+	if (start[j]->content == graph->start)
+		start[j] = start[j]->after;
+}
+
+void	choose_ways(t_inf *info, t_graph *graph, t_way **start, t_moving *transp)
+{
+	int 		i;
+	int 		j;
+	int 		ants;
+	int 		k;
+
 	i = 0;
+	k = 0;
+	ants = info->ants;
 	while (i < info->ants)
 	{
 		j = 0;
-		while (j < graph->len_way)
+		while (j < graph->numb_ways)
 		{
-			if (ants > how_much(len, j))
+			if (ants > how_much(graph->len_ways, j))
 			{
-				if (start[j]->content == graph->start)
-					start[j] = start[j]->after;
-				transp[k].room = start[j]->content;
-				transp[k].ant = i + 1;
-				transp[k].way = j;
+				if_start(&start, graph, j);
+				fill_transp(&transp[k], start, i, j);
 				printf("ant %d, way %d\n", transp[k].ant, transp[k].way);
 				ants--;
 				i++;
@@ -289,12 +179,20 @@ void    move_ants(t_ways *res, t_inf *info, t_graph *graph)
 		}
 		if (i == info->ants - 1)
 		{
-			if (start[0]->content == graph->start)
-				start[0] = start[0]->after;
-			transp[k].room = start[0]->content;
-			transp[k].ant = i + 1;
-			transp[k].way = 0;
+			if_start(&start, graph, 0);
+			fill_transp(&transp[k], start, i, 0);
 		}
 	}
+}
+
+void    move_ants(t_ways *res, t_inf *info, t_graph *graph)
+{
+	t_way		*start[graph->numb_ways];
+	t_way		*begin[graph->numb_ways];
+	t_moving	transp[info->ants];
+
+	graph->len_ways = lenght_ways(res, graph->numb_ways);
+	start_begin(graph, &start, &begin, res);
+	choose_ways(info, graph, &start, &transp);
 	run(transp, info, begin, graph);
 }
