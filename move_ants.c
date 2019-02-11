@@ -123,6 +123,7 @@ int 	*len_ways(t_ways *res, int numb)
 		start = res->ways;
 		while (start)
 		{
+			printf("start %d \n", start->content);
 			start = start->after;
 			len[i]++;
 		}
@@ -138,13 +139,17 @@ int 	*len_ways(t_ways *res, int numb)
 int 	how_much(int *len, int j)
 {
 	int how;
+	int lenght;
 
-	how = len[j] - 1;
-	while (j >= 1)
+	how = 0;
+//	printf("j %d \n", j);
+	lenght = len[j];
+	while (j >= 0)
 	{
-		how += len[j] - len[j - 1];
+		how += lenght - len[j];
 		j--;
 	}
+//	printf("len %d\n", how);
 	return (how);
 }
 
@@ -182,60 +187,78 @@ int 	how_much(int *len, int j)
 //	}
 //}
 
-void	run(t_moving *transp, t_inf *info, int ants, t_way **start, t_graph *graph)
+void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 {
-	int		i;
-	int		k;
-	int		d;
-	int		j;
-	t_way	*buf;
-	t_moving	*tmp;
+	int i;
+	int k;
+	int d;
+	int j;
+	t_way *buf[graph->len_way];
 
 	i = 0;
 	d = 0;
 	j = 0;
-	tmp = transp;
-	buf = start[d];
-	while (j < ants - 1)
+	k = 0;
+	while (d < graph->len_way)
 	{
-		i = 0;
-		transp = tmp;
-		while (i < ants && transp)
+		buf[d] = start[d];
+		d++;
+	}
+	while (transp[info->ants - 1].room != graph->end)
+	{
+		d = transp[k].way;
+		start[d] = buf[d];
+		while (start[d]->content != transp[k].room)
+			start[d] = start[d]->after;
+		while (start[d]->content == graph->end && transp[k].room == graph->end)
+			k++;
+		if (start[d]->ant == -1)
 		{
-			d = transp->way;
-			if (start[d] == NULL)
-				start[d] = buf;
-			while (start[d]->content != transp->room)
-				start[d] = start[d]->after;
+
 			ft_printf("L");
-			ft_printf("%d-%s\n", transp->ant, info->room[start[d]->content].name);
-			if (start[d]->after)
-				transp->room = start[d]->after->content;
-			i++;
-			transp = transp->next;
+			ft_printf("%d-%s\n", transp[k].ant, info->room[start[d]->content].name);
+			graph->nodes[transp[k].ant].room = start[d]->content;
+			start[d]->ant = transp[k].ant;
+			transp[k].room = start[d]->content;
+			k = 0;
 		}
-		j++;
+		else if (start[d]->ant == transp[k].ant)
+		{
+			start[d]->ant = -1;
+			start[d] = start[d]->after;
+			ft_printf("L");
+			ft_printf("%d-%s", transp[k].ant, info->room[start[d]->content].name);
+			if (k == info->ants - 1)
+				ft_printf("\n");
+			else
+				ft_printf(" ");
+			graph->nodes[transp[k].ant].room = start[d]->content;
+			start[d]->ant = transp[k].ant;
+			transp[k].room = start[d]->content;
+			k++;
+		}
+		if (k == info->ants)
+			k = 0;
 	}
 }
 
-void    move_ants(t_ways *res, int numb, t_inf *info, t_graph *graph)
+void    move_ants(t_ways *res, t_inf *info, t_graph *graph)
 {
-	t_way	*start[numb];
-	t_way	*begin[numb];
-	t_moving	*transp;
-	t_moving	*tr;
+	t_way	*start[graph->len_way];
+	t_way	*begin[graph->len_way];
+	t_moving	transp[info->ants];
 	int 	*len;
 	int		i;
 	int		j;
+	int		k;
 	int 	ants;
 
 	i = 0;
 	j = 0;
-	transp = (t_moving*)malloc(sizeof(t_moving));
-	tr = transp;
+	k = 0;
 	ants = info->ants;
-	len = len_ways(res, numb);
-	while (i < numb)
+	len = len_ways(res, graph->len_way);
+	while (i < graph->len_way)
 	{
 		start[i] = res->ways;
 		begin[i] = res->ways;
@@ -246,28 +269,19 @@ void    move_ants(t_ways *res, int numb, t_inf *info, t_graph *graph)
 	while (i < info->ants)
 	{
 		j = 0;
-		while (j < numb)
+		while (j < graph->len_way)
 		{
 			if (ants > how_much(len, j))
 			{
-//				printf("\n{ begin before %s, start before %s , j %d}\n", \
-//				info->room[begin[j]->content].name, info->room[start[j]->content].name, j);
-//				other_ants(i + 1, j, begin, info, graph->start);
-//				printf("\n{ begin after %s, start after %s, j %d }\n", \
-//				info->room[begin[j]->content].name,info->room[start[j]->content].name, j);
-//				ft_printf("L");
 				if (start[j]->content == graph->start)
 					start[j] = start[j]->after;
-				transp->room = start[j]->content;
-				transp->ant = i + 1;
-				transp->way = j;
-//				printf("room %s, ant %d, way %d\n", info->room[transp->room].name, transp->ant, transp->way);
-				transp->next = (t_moving*)malloc(sizeof(t_moving));
-				transp = transp->next;
-				transp->next = NULL;
-//				ft_printf("%d-%s j%d\n", i + 1, info->room[start[j]->content].name, j);
+				transp[k].room = start[j]->content;
+				transp[k].ant = i + 1;
+				transp[k].way = j;
+				printf("ant %d, way %d\n", transp[k].ant, transp[k].way);
 				ants--;
 				i++;
+				k++;
 			}
 			else if (i == info->ants - 1)
 				break;
@@ -275,21 +289,12 @@ void    move_ants(t_ways *res, int numb, t_inf *info, t_graph *graph)
 		}
 		if (i == info->ants - 1)
 		{
-//			other_ants(i + 1, j, begin, info, graph->start);
-//			ft_printf("L");
 			if (start[0]->content == graph->start)
 				start[0] = start[0]->after;
-			transp->room = start[0]->content;
-			transp->ant = i + 1;
-			transp->way = 0;
-//			printf("room %d, ant %d, way %d\n", transp->room, transp->ant, transp->way);
-			transp->next = (t_moving*)malloc(sizeof(t_moving));
-			transp = transp->next;
-			transp->next = NULL;
-//			ft_printf("%d-%s\n", i + 1, info->room[start[0]->content].name);
-			ants--;
-			break;
+			transp[k].room = start[0]->content;
+			transp[k].ant = i + 1;
+			transp[k].way = 0;
 		}
 	}
-	run(tr, info, info->ants, begin, graph);
+	run(transp, info, begin, graph);
 }

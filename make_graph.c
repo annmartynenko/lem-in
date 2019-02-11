@@ -20,6 +20,7 @@ void	fill_node(t_graph **graph, int i, int *k, int paste)
 	{
 		(*graph)->nodes[i].searched = -1;
 		(*graph)->nodes[i].parent = -1;
+		(*graph)->nodes[i].room = -1;
 	}
 	printf("val %d, edg %d, sear %d, parent %d\n", (*graph)->nodes[i].value, (*graph)->nodes[i].edges[*k], (*graph)->nodes[i].searched, (*graph)->nodes[i].parent);
 	(*k)++;
@@ -39,6 +40,7 @@ void	find_se(t_graph **graph, t_inf * info)
 			(*graph)->end = i;
 		i++;
 	}
+	(*graph)->len_way = 0;
 	printf("end %d: start %d\n", (*graph)->end, (*graph)->start);
 }
 

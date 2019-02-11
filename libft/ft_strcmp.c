@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	int				res;
@@ -25,7 +25,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	res = 0;
 	if (s1 && s2)
 	{
-		while (a[i] && b[i] && a[i] == b[i])
+		while (a[i] != '\0' && b[i] != '\0' && a[i] == b[i])
 			i++;
 		if (a[i] != b[i])
 			res = a[i] - b[i];

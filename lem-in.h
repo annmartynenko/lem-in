@@ -56,6 +56,7 @@ typedef struct		s_fl
 typedef	struct		s_node
 {
 	int value;
+	int room;
 	int *edges;
 	int n_edg;
 	int searched;
@@ -67,11 +68,13 @@ typedef struct 		s_graph
 	t_node	*nodes;
 	int		start;
 	int		end;
+	int 	len_way;
 }					t_graph;
 
 typedef struct		s_way
 {
 	int				content;
+	int				ant;
 	struct s_way	*after;
 }					t_way;
 
@@ -86,7 +89,6 @@ typedef struct		s_moving
 	int					ant;
 	int					room;
 	int					way;
-	struct s_moving		*next;
 }					t_moving;
 
 void		read_map(char **av, t_inf *info);
@@ -95,7 +97,7 @@ size_t		ft_strlen_chr(const char *s, int c);
 void		parsing(t_fl *file, t_inf *info);
 void		make_graph(t_inf *info);
 void		bfs(t_graph *graph, t_inf *info);
-void   		move_ants(t_ways *res, int numb, t_inf *info, t_graph *graph);
+void   		move_ants(t_ways *res, t_inf *info, t_graph *graph);
 void		choose_ways(t_ways *result, t_inf *info);
 
 #endif
