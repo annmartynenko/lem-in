@@ -12,6 +12,8 @@ add_executable(lem_in
         make_graph.c
         bfs.c
         move_ants.c
+        additional_functions.c
+        additional_functions2.c
         libft/ft_printf/extra_fun.c
         libft/ft_printf/find_flag.c
         libft/ft_printf/for_add.c

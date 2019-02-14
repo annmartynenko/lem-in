@@ -15,13 +15,10 @@
 
 void	fill_node(t_graph **graph, int i, int *k, int paste)
 {
-	(*graph)->nodes[i].edges[*k] = paste;
-	if (!(*graph)->nodes[i].searched && !(*graph)->nodes[i].parent)
-	{
+	(*graph)->nodes[i].edges[(*k)] = paste;
+//	if (!(*graph)->nodes[i].searched)
 		(*graph)->nodes[i].searched = -1;
-		(*graph)->nodes[i].parent = -1;
-	}
-	printf("val %d, edg %d, sear %d, parent %d\n", (*graph)->nodes[i].value, (*graph)->nodes[i].edges[*k], (*graph)->nodes[i].searched, (*graph)->nodes[i].parent);
+	printf("val %d, edg %d, sear %d\n", (*graph)->nodes[i].value, (*graph)->nodes[i].edges[*k], (*graph)->nodes[i].searched);
 	(*k)++;
 
 }
@@ -70,7 +67,10 @@ void	make_graph(t_inf *info)
 	graph->nodes = (t_node*)malloc(sizeof(t_node) * info->rooms);
 	graph->end = -1;
 	graph->start = -1;
+	graph->numb_ways = 0;
+	graph->len_ways = NULL;
 	i = 0;
+	printf("HELLO\n");
 	while (i < info->rooms)
 	{
 		graph->nodes[i].value = i;
@@ -88,11 +88,10 @@ void	make_graph(t_inf *info)
 			j++;
 		}
 		(graph)->nodes[i].edges[k] = -1;
-		printf("val %d, edg %d, sear %d, parent %d\n", (graph)->nodes[i].value, (graph)->nodes[i].edges[k], (graph)->nodes[i].searched, (graph)->nodes[i].parent);
+		printf("val %d, edg %d, sear %d\n", (graph)->nodes[i].value, (graph)->nodes[i].edges[k], (graph)->nodes[i].searched);
 		k++;
 		i++;
 	}
 	find_se(&graph, info);
-	printf("\n%d: %d | %d %d\n", graph->nodes[2].value, graph->nodes[2].edges[0], (graph)->nodes[2].searched, (graph)->nodes[2].parent);
 	bfs(graph, info);
 }

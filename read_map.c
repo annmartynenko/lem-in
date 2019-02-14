@@ -31,13 +31,14 @@ int 	check_room(char *tmp)
 		if (tmp[i] == ' ')
 			sp++;
 		if	(tmp[i] == '-')
-			return  (0);
+			return (0);
 		if (sp > 3)
 			exit_l("too much spaces");
 		i++;
 	}
 	if (sp == 2)
 		return (1);
+	ft_strdel(&tmp);
 	return (0);
 }
 
@@ -56,6 +57,7 @@ void	check_ants(int fd, t_inf *info)
 		i++;
 	if (tmp[i] != '\0')
 		exit_l("no count of ants");
+	ft_strdel(&tmp);
 }
 
 int 	check_links(char *tmp)
@@ -66,7 +68,7 @@ int 	check_links(char *tmp)
 	i = 0;
 	hyphen = 0;
 	if(tmp[0] == '#')
-		return(0);
+		return (0);
 	while (tmp[i])
 	{
 		if (tmp[i] == ' ')
@@ -98,14 +100,26 @@ void	read_map(char **av, t_inf *info)
 	{
 		info->rooms += check_room(tmp);
 		info->links += check_links(tmp);
-		file->line = tmp;
+		file->line = ft_strdup(tmp);
 		file->next = (t_fl*)malloc(sizeof(t_fl));
 		file = file->next;
+		file->next = NULL;
+		ft_strdel(&tmp);
 	}
 	if (info->links < 1)
 		exit_l("less than 1 link in the map");
+	file->next = NULL;
 	ft_strdel(&tmp);
+	printf("ants %d\n", info->ants);
 //	printf("rooms %d, links %d\n", info->rooms, info->links);
 //	printf("%s\n", buf->line);
 	parsing(buf, info);
+//	while (buf)
+//	{
+////		file = buf->next;
+//		free(buf->line);
+//		free(buf);
+////		file = buf;
+//		buf = buf->next;
+//	}
 }

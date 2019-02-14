@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/amartyne/lem-in/./libft/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+fcntl.h
+-
+unistd.h
+-
+stdarg.h
+-
+
+/Users/amartyne/lem-in/lem-in.h
+stdlib.h
+-
+unistd.h
+-
+fcntl.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+./libft/libft.h
+/Users/amartyne/lem-in/./libft/libft.h
+
+/Users/amartyne/lem-in/read_map.c
+lem-in.h
+/Users/amartyne/lem-in/lem-in.h
+stdio.h
+-
+

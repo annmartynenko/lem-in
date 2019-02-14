@@ -34,11 +34,11 @@ void	write_room(t_fl *file, t_inf *info, int a, int *j)
 	char **mass;
 
 	mass = ft_strsplit(file->line, ' ');
-	info->room[*j].name = ft_strdup(mass[0]);
-	info->room[*j].x = ft_atoi(mass[1]);
-	info->room[*j].y = ft_atoi(mass[2]);
-    same_rooms(info, *j);
-	info->room[*j].s_e = a;
+	info->room[(*j)].name = ft_strdup(mass[0]);
+	info->room[(*j)].x = ft_atoi(mass[1]);
+	info->room[(*j)].y = ft_atoi(mass[2]);
+    same_rooms(info, (*j));
+	info->room[(*j)].s_e = a;
 	ft_arrfree(mass);
 	printf("%s %d %d | %d %d\n", info->room[*j].name, info->room[*j].x, info->room[*j].y, *j, info->room[*j].s_e);
 	(*j)++;
@@ -65,7 +65,7 @@ void	write_link(t_fl *file, t_inf *info, int *i)
 	info->link[*i].rm1 == info->link[*i].rm2)
 		exit_l("non-existent room in link");
 	ft_arrfree(mass);
-	printf("%d %d \n", info->link[(*i)].rm1, info->link[(*i)].rm2);
+	printf("%d-%d \n", info->link[(*i)].rm1, info->link[(*i)].rm2);
 	(*i)++;
 }
 
@@ -74,6 +74,7 @@ void	parsing(t_fl *file, t_inf *info)
 	int i;
 	int j;
 	int s_e;
+//	t_fl *tmp;
 
 	j = 0;
 	i = 0;
@@ -94,12 +95,22 @@ void	parsing(t_fl *file, t_inf *info)
 			write_room(file, info, END, &j);
 			s_e++;
 		}
-		else if (ft_strchr(file->line, ' '))
+		else if (ft_strchr(file->line, ' ') && file->line[0] != '#')
 			write_room(file, info, NORMAL, &j);
 		else if (ft_strchr(file->line, '-'))
 			write_link(file, info, &i);
 		file = file->next;
 	}
+	printf("PPP\n");
 	if (s_e != 2)
 		exit_l("no start or end mark");
+//	free(file);
+//	while (file)
+//	{
+//		tmp = file->next;
+//		free(file->line);
+//		free(file);
+//		file = tmp;
+//		file = file->next;
+//	}
 }

@@ -13,7 +13,7 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-void	copy_way(t_ways *queue, t_way *prev, int neighbor, t_graph *graph)
+void	copy_way(t_ways *queue, t_way *prev, int neighbor)
 {
 	t_way		*buf;
 
@@ -140,10 +140,9 @@ void	bfs(t_graph *graph, t_inf *info)
 				neighbor = graph->nodes[current].edges[j];
 				if (papa != neighbor && neighbor != graph->start && check_neighbor(start, neighbor))
 				{
-					copy_way(queue, start, neighbor, graph);
+					copy_way(queue, start, neighbor);
 //					if (neighbor != graph->end)
 //						graph->nodes[neighbor].searched = 1;
-					graph->nodes[neighbor].parent = current;
 				}
 				j++;
 			}
@@ -169,7 +168,5 @@ void	bfs(t_graph *graph, t_inf *info)
 //		printf("\n");
 //		res = res->next;
 //	}
-//	choose_ways(res, info);
-
 	move_ants(res, info, graph);
 }

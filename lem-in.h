@@ -59,7 +59,6 @@ typedef	struct		s_node
 	int *edges;
 	int n_edg;
 	int searched;
-	int parent;
 }					t_node;
 
 typedef struct 		s_graph
@@ -98,5 +97,13 @@ void		parsing(t_fl *file, t_inf *info);
 void		make_graph(t_inf *info);
 void		bfs(t_graph *graph, t_inf *info);
 void   		move_ants(t_ways *res, t_inf *info, t_graph *graph);
+int 	how_much(int *len, int j);
+void	print(t_moving *transp, t_way *start, t_inf *info, int *k);
+void	first_action(t_moving *transp, t_way **start, t_graph *graph, int *k);
+void	fill_buf(t_graph *graph, t_way **start, t_way **buf);
+void	new_line(int *k);
+void	fill_transp(t_moving *transp, int room, int i, int j);
+void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res);
+void	if_start(t_way **start, t_graph *graph, int j);
 
 #endif

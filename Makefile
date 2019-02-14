@@ -12,7 +12,8 @@
 
 NAME = lem-in
 
-SRC = lem-in.c read_map.c ft_strlen_chr.c parsing.c exit.c make_graph.c bfs.c move_ants.c
+SRC = lem-in.c read_map.c ft_strlen_chr.c parsing.c exit.c make_graph.c bfs.c\
+ move_ants.c additional_functions.c additional_functions2.c
 
 HDR = lem-in.h get_next_line.h
 
