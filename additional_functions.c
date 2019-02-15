@@ -52,7 +52,6 @@ void	fill_buf(t_graph *graph, t_way **start, t_way **buf)
 	d = 0;
 	while (d < graph->numb_ways)
 	{
-		buf[d] = (t_way*)malloc(sizeof(t_way));
 		buf[d] = start[d];
 		d++;
 	}

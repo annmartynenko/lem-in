@@ -27,8 +27,6 @@ void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res)
 	i = 0;
 	while (i < graph->numb_ways)
 	{
-		(start)[i] = (t_way*)malloc(sizeof(t_way));
-		(begin)[i] = (t_way*)malloc(sizeof(t_way));
 		(start)[i] = res->ways;
 		(begin)[i] = res->ways;
 		res = res->next;

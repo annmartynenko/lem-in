@@ -20,7 +20,8 @@ int 	*lenght_ways(t_ways *res, int numb)
 	int i;
 
 	i = 0;
-	len = (int*)malloc(sizeof(int) * numb + 1);
+	start = NULL;
+	len = (int*)malloc(sizeof(int) * numb);
 	printf("NUMB %d\n", numb);
 	while (res)
 	{
@@ -37,6 +38,7 @@ int 	*lenght_ways(t_ways *res, int numb)
 		res = res->next;
 	}
 	len[i] = 0;
+	free(start);
 	return (len);
 }
 
@@ -71,6 +73,7 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 			print(&transp[k], start[d], info, &k);
 		}
 	}
+	free(buf);
 }
 
 void	choose_ways(t_inf *info, t_graph *graph, t_way **start, t_moving *transp)
@@ -116,6 +119,7 @@ void    move_ants(t_ways *res, t_inf *info, t_graph *graph)
 	t_way		**begin;
 	t_moving	*transp;
 
+
 	transp = (t_moving*)malloc(sizeof(t_way) * info->ants);
 	start = (t_way**)malloc(sizeof(t_way*) * graph->numb_ways);
 	begin = (t_way**)malloc(sizeof(t_way*) * graph->numb_ways);
@@ -123,4 +127,7 @@ void    move_ants(t_ways *res, t_inf *info, t_graph *graph)
 	start_begin(graph, start, begin, res);
 	choose_ways(info, graph, start, transp);
 	run(transp, info, begin, graph);
+	free(transp);
+	free(begin);
+	free(start);
 }

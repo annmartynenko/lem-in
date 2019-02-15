@@ -101,16 +101,7 @@ void	parsing(t_fl *file, t_inf *info)
 			write_link(file, info, &i);
 		file = file->next;
 	}
-	printf("PPP\n");
+	printf("FINISH parsing\n");
 	if (s_e != 2)
 		exit_l("no start or end mark");
-//	free(file);
-//	while (file)
-//	{
-//		tmp = file->next;
-//		free(file->line);
-//		free(file);
-//		file = tmp;
-//		file = file->next;
-//	}
 }

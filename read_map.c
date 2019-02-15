@@ -114,12 +114,13 @@ void	read_map(char **av, t_inf *info)
 //	printf("rooms %d, links %d\n", info->rooms, info->links);
 //	printf("%s\n", buf->line);
 	parsing(buf, info);
-//	while (buf)
-//	{
-////		file = buf->next;
-//		free(buf->line);
-//		free(buf);
-////		file = buf;
-//		buf = buf->next;
-//	}
+	while (buf)
+	{
+		file = buf->next;
+		if (buf->next)
+			free(buf->line);
+		free(buf);
+		buf = file;
+	}
+//	printf("%d, %d\n", info->ants, info->link[1].rm1);
 }
