@@ -38,7 +38,7 @@ int 	check_room(char *tmp)
 	}
 	if (sp == 2)
 		return (1);
-	ft_strdel(&tmp);
+//	ft_strdel(&tmp);
 	return (0);
 }
 
@@ -67,7 +67,7 @@ int 	check_links(char *tmp)
 
 	i = 0;
 	hyphen = 0;
-	if(tmp[0] == '#')
+	if (tmp[0] == '#')
 		return (0);
 	while (tmp[i])
 	{
@@ -75,7 +75,7 @@ int 	check_links(char *tmp)
 			return (0);
 		if (tmp[i] == '-')
 			hyphen++;
-		if(hyphen > 1)
+		if (hyphen > 1)
 			exit_l("too much hyphen");
 		i++;
 	}
@@ -95,12 +95,14 @@ void	read_map(char **av, t_inf *info)
 	fd = open(av[1], O_RDONLY);
 	check_ants(fd, info);
 	file = (t_fl*)malloc(sizeof(t_fl));
+	file->next = NULL;
 	buf = file;
 	while(get_next_line(fd, &tmp))
 	{
 		info->rooms += check_room(tmp);
 		info->links += check_links(tmp);
 		file->line = ft_strdup(tmp);
+//		printf("tmp %s, file %s\n", tmp, file->line);
 		file->next = (t_fl*)malloc(sizeof(t_fl));
 		file = file->next;
 		file->next = NULL;
@@ -108,10 +110,11 @@ void	read_map(char **av, t_inf *info)
 	}
 	if (info->links < 1)
 		exit_l("less than 1 link in the map");
+//	free(file);
 	file->next = NULL;
 	ft_strdel(&tmp);
 	printf("ants %d\n", info->ants);
-//	printf("rooms %d, links %d\n", info->rooms, info->links);
+	printf("rooms %d, links %d\n", info->rooms, info->links);
 //	printf("%s\n", buf->line);
 	parsing(buf, info);
 	while (buf)

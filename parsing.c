@@ -53,6 +53,8 @@ void	write_link(t_fl *file, t_inf *info, int *i)
 	info->link[(*i)].rm1 = -1;
 	info->link[(*i)].rm2 = -1;
 	mass = ft_strsplit(file->line, '-');
+	if (!mass[0])
+		exit_l("half link");
 	while (j < info->rooms)
 	{
 		if (ft_strcmp(mass[0], info->room[j].name) == 0)
@@ -74,7 +76,6 @@ void	parsing(t_fl *file, t_inf *info)
 	int i;
 	int j;
 	int s_e;
-//	t_fl *tmp;
 
 	j = 0;
 	i = 0;
@@ -101,7 +102,6 @@ void	parsing(t_fl *file, t_inf *info)
 			write_link(file, info, &i);
 		file = file->next;
 	}
-	printf("FINISH parsing\n");
 	if (s_e != 2)
 		exit_l("no start or end mark");
 }

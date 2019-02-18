@@ -26,6 +26,7 @@ int 	*lenght_ways(t_ways *res, int numb)
 	while (res)
 	{
 		start = res->ways;
+		len[i] = 0;
 		while (start)
 		{
 			printf("start %d \n", start->content);
@@ -59,6 +60,7 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 		d = transp[k].way;
 		start[d] = buf[d];
 		first_action(transp, &start[d], graph, &k);
+//		printf("     { start %d, transp %d, d %d, k %d }   \n", start[d]->ant, transp[k].ant, d, k);
 		if (k == info->ants || (start[d]->ant != -1 && start[d]->ant != transp[k].ant))
 			new_line(&k);
 		d = transp[k].way;
