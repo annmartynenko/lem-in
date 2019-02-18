@@ -61,7 +61,7 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 		start[d] = buf[d];
 		first_action(transp, &start[d], graph, &k);
 //		printf("     { start %d, transp %d, d %d, k %d }   \n", start[d]->ant, transp[k].ant, d, k);
-		if (k == info->ants || (start[d]->ant != -1 && start[d]->ant != transp[k].ant))
+		if (k == info->ants || (start[d]->ant != -1 && start[d]->ant != transp[k].ant) || k == 0)
 			new_line(&k);
 		d = transp[k].way;
 		start[d] = buf[d];
