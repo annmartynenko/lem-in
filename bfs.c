@@ -16,22 +16,24 @@
 void	copy_way(t_ways *queue, t_way *prev, int neighbor, t_graph *graph)
 {
 	t_way *buf;
+	t_ways *tmp;
 
-	if (queue->next != NULL)
+	tmp = queue;
+	if (tmp->next != NULL)
 	{
-		while (queue->next)
-			queue = queue->next;
+		while (tmp->next)
+			tmp = tmp->next;
 	}
-	(queue)->next = (t_ways*)malloc(sizeof(t_ways));
-	(queue) = (queue)->next;
-	(queue)->next = NULL;
-	(queue)->ways = (t_way*)malloc(sizeof(t_way));
-	buf = (queue)->ways;
+	(tmp)->next = (t_ways*)malloc(sizeof(t_ways));
+	(tmp) = tmp->next;
+	tmp->next = NULL;
+	tmp->ways = (t_way*)malloc(sizeof(t_way));
+	buf = tmp->ways;
 	while ((prev))
 	{
 		buf->content = (prev)->content;
 		buf->ant = -1;
-//		printf(" %d(%d)-> ", buf->content, (graph)->nodes[prev->content].searched);
+		printf(" %d(%d)-> ", buf->content, (graph)->nodes[prev->content].searched);
 //		if (prev->content != (graph)->end && prev->content != (graph)->start)
 //			(graph)->nodes[prev->content].searched = 1;
 		buf->after = (t_way *) malloc(sizeof(t_way));
@@ -39,8 +41,8 @@ void	copy_way(t_ways *queue, t_way *prev, int neighbor, t_graph *graph)
 		prev = (prev)->after;
 	}
 	buf->content = neighbor;
-//	printf(" %d(%d)-> ", buf->content, (graph)->nodes[buf->content].searched);
-//	printf("\n");
+	printf(" %d(%d)-> ", buf->content, (graph)->nodes[buf->content].searched);
+	printf("\n");
 //	(graph)->nodes[neighbor].searched = 1;
 	buf->ant = -1;
 	buf->after = NULL;
@@ -51,7 +53,7 @@ int		check_neighbor(t_way *start, int neighbor)
 //	start = start->after;
 	while (start)
 	{
-		if (start->content == neighbor )
+		if (start->content == neighbor)
 			return (0);
 		start = start->after;
 	}
@@ -78,8 +80,8 @@ void	fill_ways(t_way *start, t_ways **result, t_inf *info, t_graph *graph)
 	while (start)
 	{
 		buf->content = start->content;
-		if (start->content != (graph)->end && start->content != (graph)->start)  //і сюди
-			(graph)->nodes[buf->content].searched = 1;
+//		if (start->content != (graph)->end && start->content != (graph)->start)  //і сюди
+//			(graph)->nodes[buf->content].searched = 1;
 		buf->ant = -1;
 		printf(" %d / ", buf->content);
 		buf->after = (t_way*)malloc(sizeof(t_way));
@@ -127,12 +129,14 @@ void	bfs(t_graph *graph, t_inf *info)
 			queue->ways = queue->ways->after;
 		}
 		current = queue->ways->content;
+		if (current != (graph)->end && current != (graph)->start)
+			(graph)->nodes[current].searched = 1;
 		j = 0;
 		while (graph->nodes[current].edges[j] != -1)
 		{
 			neighbor = graph->nodes[current].edges[j];
 //			printf("%d - %d\n", neighbor, (graph)->nodes[neighbor].searched);
-			if (papa != neighbor && neighbor != graph->start && check_neighbor(start, neighbor) && (graph)->nodes[neighbor].searched != 1)
+			if (papa != neighbor && neighbor != graph->start && check_neighbor(start, neighbor) && graph->nodes[neighbor].searched == -1)
 			{
 				if (neighbor != graph->end)
 					copy_way(queue, start, neighbor, graph);
