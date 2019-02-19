@@ -101,7 +101,7 @@ int 	how_much(int *len, int j);
 void	print(t_moving *transp, t_way *start, t_inf *info, int *k);
 void	first_action(t_moving *transp, t_way **start, t_graph *graph, int *k);
 void	fill_buf(t_graph *graph, t_way **start, t_way **buf);
-void	new_line(int *k);
+void	new_line(int *k, int *lines);
 void	fill_transp(t_moving *transp, int room, int i, int j);
 void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res);
 void	if_start(t_way **start, t_graph *graph, int j);

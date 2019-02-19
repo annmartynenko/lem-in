@@ -57,8 +57,9 @@ void	fill_buf(t_graph *graph, t_way **start, t_way **buf)
 	}
 }
 
-void	new_line(int *k)
+void	new_line(int *k, int *lines)
 {
 	ft_printf("\n");
 	(*k) = 0;
+	(*lines)++;
 }

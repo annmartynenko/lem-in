@@ -29,7 +29,7 @@ int 	*lenght_ways(t_ways *res, int numb)
 		len[i] = 0;
 		while (start)
 		{
-			printf("start %d \n", start->content);
+//			printf("start %d \n", start->content);
 			start = start->after;
 			len[i]++;
 		}
@@ -47,10 +47,12 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 {
 	int k;
 	int d;
+	int lines;
 	t_way **buf;
 
 	d = 0;
 	k = 0;
+	lines = 0;
 	buf = (t_way**)malloc(sizeof(t_way*) * graph->numb_ways);
 	fill_buf(graph, start, buf);
 	while (transp[info->ants - 1].room != graph->end)
@@ -62,11 +64,11 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 		first_action(transp, &start[d], graph, &k);
 //		printf("     { start %d, transp %d, d %d, k %d }   \n", start[d]->ant, transp[k].ant, d, k);
 		if (k == info->ants || (start[d]->ant != -1 && start[d]->ant != transp[k].ant) || k == 0)
-			new_line(&k);
+			new_line(&k, &lines);
 		d = transp[k].way;
 		start[d] = buf[d];
 		first_action(transp, &start[d], graph, &k);
-		if (start[d]->ant == -1)
+		if (start[d]->ant == -1 && start[d]->ant != transp[k].ant)
 			print(&transp[k], start[d], info, &k);
 		else if (start[d]->ant == transp[k].ant)
 		{
@@ -75,6 +77,7 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 			print(&transp[k], start[d], info, &k);
 		}
 	}
+	printf("\n\nlines = %d\n", lines);
 	free(buf);
 }
 
