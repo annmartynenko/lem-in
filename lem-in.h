@@ -59,6 +59,7 @@ typedef	struct		s_node
 	int *edges;
 	int n_edg;
 	int searched;
+	int note;
 }					t_node;
 
 typedef struct 		s_graph

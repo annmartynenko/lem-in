@@ -24,7 +24,7 @@ unistd.h
 stdarg.h
 -
 
-/Users/amartyne/lem-in/bfs.c
+/Users/amartyne/lem-in/additional_functions.c
 lem-in.h
 /Users/amartyne/lem-in/lem-in.h
 stdio.h
@@ -43,4 +43,10 @@ sys/stat.h
 -
 ./libft/libft.h
 /Users/amartyne/lem-in/./libft/libft.h
+
+/Users/amartyne/lem-in/move_ants.c
+lem-in.h
+/Users/amartyne/lem-in/lem-in.h
+stdio.h
+-
 

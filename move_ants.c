@@ -47,10 +47,12 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 {
 	int k;
 	int d;
+	int i;
 	int lines;
 	t_way **buf;
 
 	d = 0;
+	i = 0;
 	k = 0;
 	lines = 0;
 	buf = (t_way**)malloc(sizeof(t_way*) * graph->numb_ways);
@@ -76,6 +78,7 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 			start[d] = start[d]->after;
 			print(&transp[k], start[d], info, &k);
 		}
+
 	}
 	printf("\n\nlines = %d\n", lines);
 	free(buf);

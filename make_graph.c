@@ -16,8 +16,8 @@
 void	fill_node(t_graph **graph, int i, int *k, int paste)
 {
 	(*graph)->nodes[i].edges[(*k)] = paste;
-//	if (!(*graph)->nodes[i].searched)
-		(*graph)->nodes[i].searched = -1;
+	(*graph)->nodes[i].searched = -1;
+	(*graph)->nodes[i].note = -1;
 	printf("val %d, edg %d, sear %d\n", (*graph)->nodes[i].value, (*graph)->nodes[i].edges[*k], (*graph)->nodes[i].searched);
 	(*k)++;
 
