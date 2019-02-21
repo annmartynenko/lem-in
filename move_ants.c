@@ -60,12 +60,15 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 	while (transp[info->ants - 1].room != graph->end)
 	{
 		if (k == info->ants)
+		{
+			printf("\n");
 			k = 0;
+		}
 		d = transp[k].way;
 		start[d] = buf[d];
 		first_action(transp, &start[d], graph, &k);
 //		printf("     { start %d, transp %d, d %d, k %d }   \n", start[d]->ant, transp[k].ant, d, k);
-		if (k == info->ants || (start[d]->ant != -1 && start[d]->ant != transp[k].ant) || k == 0)
+		if ((start[d]->ant != -1 && start[d]->ant != transp[k].ant && start[d]->content != graph->end) || k == 0)
 			new_line(&k, &lines);
 		d = transp[k].way;
 		start[d] = buf[d];
@@ -78,6 +81,7 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 			start[d] = start[d]->after;
 			print(&transp[k], start[d], info, &k);
 		}
+
 
 	}
 	printf("\n\nlines = %d\n", lines);
