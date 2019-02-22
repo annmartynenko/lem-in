@@ -56,11 +56,8 @@ int     count_edges(t_inf *info, int i)
     return (len);
 }
 
-void	make_graph(t_inf *info)
+t_graph	*create_graph(t_inf *info)
 {
-	int i;
-	int j;
-	int k;
 	t_graph *graph;
 
 	graph = (t_graph*)malloc(sizeof(t_graph));
@@ -69,38 +66,44 @@ void	make_graph(t_inf *info)
 	graph->start = -1;
 	graph->numb_ways = 0;
 	graph->len_ways = NULL;
-	i = 0;
+	return(graph);
+}
+
+void	make_graph(t_inf *info)
+{
+	int i;
+	int j;
+	int k;
+	t_graph *graph;
+
+
+	i = -1;
+	graph = create_graph(info);
 	printf("MAKE GRAPH\n");
-	while (i < info->rooms)
+	while (++i < info->rooms)
 	{
 		graph->nodes[i].value = i;
 		graph->nodes[i].n_edg = count_edges(info, i);
 		printf("number edges for %d = %d\n", i, graph->nodes[i].n_edg);
 		graph->nodes[i].edges = (int*)malloc(sizeof(int) * (graph->nodes[i].n_edg + 1));
-		j = 0;
+		j = -1;
 		k = 0;
-		while (j < info->links)
+		while (++j < info->links)
 		{
 			if (graph->nodes[i].value == info->link[j].rm1)
 				fill_node(&graph, i, &k, info->link[j].rm2);
 			else if (graph->nodes[i].value == info->link[j].rm2)
 				fill_node(&graph, i, &k, info->link[j].rm1);
-			j++;
 		}
 		(graph)->nodes[i].edges[k] = -1;
-//		(graph)->nodes[i].edges[k + 1] = 0;
 		printf("val %d, edg %d, sear %d\n", (graph)->nodes[i].value, (graph)->nodes[i].edges[k], (graph)->nodes[i].searched);
 		k++;
-		i++;
 	}
 	find_se(&graph, info);
 	bfs(graph, info);
-	i = 0;
-	while (i < info->rooms)
-	{
+	i = -1;
+	while (++i < info->rooms)
 		free(graph->nodes[i].edges);
-		i++;
-	}
 	free(graph->nodes);
 	free(graph->len_ways);
 	free(graph);

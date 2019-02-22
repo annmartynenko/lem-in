@@ -13,7 +13,7 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-int main(int ac, char **av)
+int main(void)
 {
 	t_inf	info;
 
@@ -22,13 +22,13 @@ int main(int ac, char **av)
 	info.room = NULL;
 	info.links = 0;
 	info.link = NULL;
-	if(ac == 2)
-	{
-		read_map(av, &info);
+//	if(ac == 2)
+//	{
+		read_map(&info);
 		make_graph(&info);
-	}
-	else
-		exit(0);
+//	}
+//	else
+//		exit(0);
 //	system("leaks lem-in");
 	return (0);
 }

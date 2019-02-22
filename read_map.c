@@ -50,13 +50,13 @@ void	check_ants(int fd, t_inf *info)
 	i= 0;
 	get_next_line(fd, &tmp);
 	if (!(info->ants = ft_atoi(tmp)))
-		exit_l("no count of ants");
+		exit_l("no number of ants");
 	if (info->ants < 1 || info->ants >= 2147483647)
 		exit_l("number of ants is less than 1 or more than INT_MAX");
 	while(tmp[i] && ft_isdigit(tmp[i]))
 		i++;
 	if (tmp[i] != '\0')
-		exit_l("no count of ants");
+		exit_l("no number of ants");
 	ft_strdel(&tmp);
 }
 
@@ -84,38 +84,38 @@ int 	check_links(char *tmp)
 	return (1);
 }
 
-void	read_map(char **av, t_inf *info)
+void	record(t_inf *info, char **line, char *tmp)
+{
+	info->rooms += check_room(tmp);
+	info->links += check_links(tmp);
+	(*line) = ft_strdup(tmp);
+}
+
+void	read_map(t_inf *info)
 {
 	char *tmp;
-	int fd;
 	t_fl *file;
 	t_fl *buf;
 
 	tmp = NULL;
-	fd = open(av[1], O_RDONLY);
-	check_ants(fd, info);
+	check_ants(0, info);
 	file = (t_fl*)malloc(sizeof(t_fl));
 	file->next = NULL;
 	buf = file;
-	while(get_next_line(fd, &tmp))
+	while(get_next_line(0, &tmp))
 	{
-		info->rooms += check_room(tmp);
-		info->links += check_links(tmp);
-		file->line = ft_strdup(tmp);
-//		printf("tmp %s, file %s\n", tmp, file->line);
+		record(info, &file->line, tmp);
 		file->next = (t_fl*)malloc(sizeof(t_fl));
 		file = file->next;
 		file->next = NULL;
 		ft_strdel(&tmp);
 	}
 	if (info->links < 1)
-		exit_l("less than 1 link in the map");
-//	free(file);
+		exit_l("no links in the map");
 	file->next = NULL;
 	ft_strdel(&tmp);
 	printf("ants %d\n", info->ants);
 	printf("rooms %d, links %d\n", info->rooms, info->links);
-//	printf("%s\n", buf->line);
 	parsing(buf, info);
 	while (buf)
 	{
@@ -125,5 +125,4 @@ void	read_map(char **av, t_inf *info)
 		free(buf);
 		buf = file;
 	}
-//	printf("%d, %d\n", info->ants, info->link[1].rm1);
 }

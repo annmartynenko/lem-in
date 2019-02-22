@@ -13,7 +13,7 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-void	copy_way(t_ways *queue, t_way *prev, int neighbor, t_graph *graph)
+void	copy_way(t_ways *queue, t_way *prev, int neighbor)
 {
 	t_way *buf;
 	t_ways *tmp;
@@ -33,15 +33,11 @@ void	copy_way(t_ways *queue, t_way *prev, int neighbor, t_graph *graph)
 	{
 		buf->content = (prev)->content;
 		buf->ant = -1;
-//		printf(" %d(%d)-> ", buf->content, (graph)->nodes[prev->content].searched);
 		buf->after = (t_way *) malloc(sizeof(t_way));
 		buf = buf->after;
 		prev = (prev)->after;
 	}
 	buf->content = neighbor;
-//	printf(" %d(%d)-> ", buf->content, (graph)->nodes[buf->content].searched);
-//	printf("\n");
-//	(graph)->nodes[neighbor].searched = 1;
 	buf->ant = -1;
 	buf->after = NULL;
 }
@@ -76,8 +72,8 @@ void	fill_ways(t_way *start, t_ways **result, t_inf *info, t_graph *graph)
 	t_way		*buf;
 
 	buf = NULL;
-	(graph)->numb_ways++;
-	if ((*result)->next == NULL && (graph)->numb_ways > 1)
+	graph->numb_ways++;
+	if ((*result)->next == NULL && graph->numb_ways > 1)
 	{
 		(*result)->next = (t_ways*)malloc(sizeof(t_ways));
 		(*result) = (*result)->next;
@@ -90,7 +86,7 @@ void	fill_ways(t_way *start, t_ways **result, t_inf *info, t_graph *graph)
 	while (start)
 	{
 		buf->content = start->content;
-		if (start->content != (graph)->end && start->content != (graph)->start)  //і сюди
+		if (start->content != (graph)->end && start->content != (graph)->start)
 			(graph)->nodes[buf->content].note = 1;
 		buf->ant = -1;
 		printf(" %s / ", info->room[buf->content].name);
@@ -115,13 +111,11 @@ void	bfs(t_graph *graph, t_inf *info)
 	int current;
 	int j;
 	int neighbor;
-	int papa;
 	t_ways *result;
 	t_ways *res;
 
 	result = (t_ways *) malloc(sizeof(t_ways));
 	res = result;
-//	papa = -1;
 	graph->nodes[graph->start].searched = -1;
 	queue = (t_ways *) malloc(sizeof(t_ways));
 	queue->ways = (t_way *) malloc(sizeof(t_way));
@@ -132,12 +126,8 @@ void	bfs(t_graph *graph, t_inf *info)
 	while (queue)
 	{
 		start = queue->ways;
-		papa = -1;
 		while (queue->ways && queue->ways->after)
-		{
-			papa = queue->ways->content;
 			queue->ways = queue->ways->after;
-		}
 		current = queue->ways->content;
 		if (graph->nodes[current].searched != 1 && current != graph->start && current != graph->end)
 			graph->nodes[current].searched = 1;
@@ -145,11 +135,11 @@ void	bfs(t_graph *graph, t_inf *info)
 		while (graph->nodes[current].edges[j] != -1)
 		{
 			neighbor = graph->nodes[current].edges[j];
-			if (neighbor != graph->start && graph->nodes[neighbor].searched == -1)
+			if (neighbor != graph->start && graph->nodes[neighbor].searched == -1 && check_searched(start, graph))
 			{
 				if (neighbor != graph->end )
-					copy_way(queue, start, neighbor, graph);
-				else if (neighbor == graph->end && check_searched(start, graph))
+					copy_way(queue, start, neighbor);
+				else if (neighbor == graph->end )
 					fill_ways(start, &result, info, graph);
 			}
 			j++;
@@ -180,7 +170,7 @@ void	bfs(t_graph *graph, t_inf *info)
 			tmp = tmp321;
 		}
 		tmp123 = res->next;
-		free(res);                                // KOCTUL
+		free(res);
 		res = tmp123;
 	}
 }

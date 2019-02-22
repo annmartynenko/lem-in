@@ -91,7 +91,7 @@ typedef struct		s_moving
 	int					way;
 }					t_moving;
 
-void		read_map(char **av, t_inf *info);
+void		read_map(t_inf *info);
 void		exit_l(char *str);
 size_t		ft_strlen_chr(const char *s, int c);
 void		parsing(t_fl *file, t_inf *info);

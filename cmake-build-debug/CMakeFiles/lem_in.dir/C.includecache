@@ -38,7 +38,7 @@ sys/stat.h
 ./libft/libft.h
 /Users/amartyne/lem-in/./libft/libft.h
 
-/Users/amartyne/lem-in/move_ants.c
+/Users/amartyne/lem-in/read_map.c
 lem-in.h
 /Users/amartyne/lem-in/lem-in.h
 stdio.h
