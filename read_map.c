@@ -57,6 +57,7 @@ void	check_ants(int fd, t_inf *info)
 		i++;
 	if (tmp[i] != '\0')
 		exit_l("no number of ants");
+	ft_printf("%s\n",tmp);
 	ft_strdel(&tmp);
 }
 
@@ -106,16 +107,18 @@ void	read_map(t_inf *info)
 	{
 		record(info, &file->line, tmp);
 		file->next = (t_fl*)malloc(sizeof(t_fl));
+		ft_printf("%s\n", file->line);
 		file = file->next;
 		file->next = NULL;
 		ft_strdel(&tmp);
 	}
+	ft_printf("\n");
 	if (info->links < 1)
 		exit_l("no links in the map");
 	file->next = NULL;
 	ft_strdel(&tmp);
-	printf("ants %d\n", info->ants);
-	printf("rooms %d, links %d\n", info->rooms, info->links);
+//	printf("ants %d\n", info->ants);
+//	printf("rooms %d, links %d\n", info->rooms, info->links);
 	parsing(buf, info);
 	while (buf)
 	{

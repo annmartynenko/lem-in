@@ -26,25 +26,27 @@
 
 typedef struct	s_room
 {
-	char *name;
-	int x;
-	int y;
-	int s_e;
+	char		*name;
+	int			x;
+	int			y;
+	int			s_e;
 }				t_room;
 
 typedef struct	s_link
 {
-	int rm1;
-	int rm2;
+	int			rm1;
+	int			rm2;
 }				t_link;
 
 typedef struct	s_inf
 {
-	int ants;
-	int rooms;
-	int links;
-	t_room	*room;
-	t_link	*link;
+	int			ants;
+	int			rooms;
+	int			links;
+	int			ways;
+	int			lines;
+	t_room		*room;
+	t_link		*link;
 }				t_inf;
 
 typedef struct		s_fl
@@ -55,20 +57,23 @@ typedef struct		s_fl
 
 typedef	struct		s_node
 {
-	int value;
-	int *edges;
-	int n_edg;
-	int searched;
-	int note;
+	int				value;
+	int				*edges;
+	int				n_edg;
+	int				searched;
+	int				note;
 }					t_node;
 
 typedef struct 		s_graph
 {
-	t_node	*nodes;
-	int		start;
-	int		end;
-	int 	numb_ways;
-	int 	*len_ways;
+	t_node			*nodes;
+	int				start;
+	int				end;
+	int				numb_ways;
+	int 			current;
+	int 			neighbor;
+	int 			lines;
+	int				*len_ways;
 }					t_graph;
 
 typedef struct		s_way
@@ -86,25 +91,36 @@ typedef struct		s_ways
 
 typedef struct		s_moving
 {
-	int					ant;
-	int					room;
-	int					way;
+	int				ant;
+	int				room;
+	int				way;
 }					t_moving;
 
-void		read_map(t_inf *info);
-void		exit_l(char *str);
-size_t		ft_strlen_chr(const char *s, int c);
-void		parsing(t_fl *file, t_inf *info);
-void		make_graph(t_inf *info);
-void		bfs(t_graph *graph, t_inf *info);
-void   		move_ants(t_ways *res, t_inf *info, t_graph *graph);
-int 	how_much(int *len, int j);
-void	print(t_moving *transp, t_way *start, t_inf *info, int *k);
-void	first_action(t_moving *transp, t_way **start, t_graph *graph, int *k);
-void	fill_buf(t_graph *graph, t_way **start, t_way **buf);
-void	new_line(int *k, int *lines);
-void	fill_transp(t_moving *transp, int room, int i, int j);
-void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res);
-void	if_start(t_way **start, t_graph *graph, int j);
+void				read_map(t_inf *info);
+void				exit_l(char *str);
+size_t				ft_strlen_chr(const char *s, int c);
+void				parsing(t_fl *file, t_inf *info);
+void				make_graph(t_inf *info);
+void				bfs(t_graph *graph, t_inf *info);
+void   				move_ants(t_ways *res, t_inf *info, t_graph *graph);
+int 				how_much(int *len, int j);
+void				print(t_moving *transp, t_way *start, t_inf *info, int *k);
+void				first_action(t_moving *transp, t_way **start, t_graph *graph, int *k);
+void				fill_buf(t_graph *graph, t_way **start, t_way **buf);
+void				new_line(int *k, int *lines);
+void				fill_transp(t_moving *transp, int room, int i, int j);
+void				start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res);
+void				if_start(t_way **start, t_graph *graph, int j);
+void				print_ways(t_ways *res, t_inf *info);
+void				clean_res(t_ways *res);
+void				clean_start(t_way *start);
+int					check_searched(t_way *start, t_graph *graph);
+void				move_and_check(t_ways *queue, t_graph *graph);
+t_ways				*create_queue(t_graph *graph);
+void				conditions(t_graph *graph, t_inf *info, t_ways *res);
+void				fill_node(t_graph **graph, int i, int *k, int paste);
+void				find_se(t_graph **graph, t_inf *info);
+int					count_edges(t_inf *info, int i);
+void				links(t_graph *graph, t_inf *info, int i);
 
 #endif

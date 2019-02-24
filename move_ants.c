@@ -13,28 +13,25 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-int 	*lenght_ways(t_ways *res, int numb)
+int			*lenght_ways(t_ways *res, int numb)
 {
 	t_way		*start;
-	int         *len;
-	int i;
+	int			*len;
+	int			i;
 
 	i = 0;
 	start = NULL;
 	len = (int*)malloc(sizeof(int) * numb);
-	printf("NUMB %d\n", numb);
 	while (res)
 	{
 		start = res->ways;
 		len[i] = 0;
 		while (start)
 		{
-//			printf("start %d \n", start->content);
 			start = start->after;
 			len[i]++;
 		}
 		len[i] -= 2;
-		printf(" i %d, len[%d]\n", len[i], i);
 		i++;
 		res = res->next;
 	}
@@ -43,30 +40,26 @@ int 	*lenght_ways(t_ways *res, int numb)
 	return (len);
 }
 
-void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
+void		run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 {
-	int k;
-	int d;
-	int i;
-	int lines;
-	t_way **buf;
+	int		k;
+	int		d;
+	t_way	**buf;
 
 	d = 0;
-	i = 0;
 	k = 0;
-	lines = 0;
 	buf = (t_way**)malloc(sizeof(t_way*) * graph->numb_ways);
 	fill_buf(graph, start, buf);
 	while (transp[info->ants - 1].room != graph->end)
 	{
 		if (k == info->ants)
-			new_line(&k, &lines);
+			new_line(&k, &graph->lines);
 		d = transp[k].way;
 		start[d] = buf[d];
 		first_action(transp, &start[d], graph, &k);
-//		printf("     { start %d, transp %d, d %d, k %d }   \n", start[d]->ant, transp[k].ant, d, k);
-		if ((start[d]->ant != -1 && start[d]->ant != transp[k].ant && start[d]->content != graph->end))
-			new_line(&k, &lines);
+		if ((start[d]->ant != -1 && start[d]->ant != transp[k].ant &&\
+		start[d]->content != graph->end))
+			new_line(&k, &graph->lines);
 		d = transp[k].way;
 		start[d] = buf[d];
 		first_action(transp, &start[d], graph, &k);
@@ -78,40 +71,37 @@ void	run(t_moving *transp, t_inf *info, t_way **start, t_graph *graph)
 			start[d] = start[d]->after;
 			print(&transp[k], start[d], info, &k);
 		}
-
-
 	}
-	printf("\n\nlines = %d\n", lines);
+	if (info->lines == 1)
+		ft_printf("\n\nlines = %d\n", graph->lines);
 	free(buf);
 }
 
-void	choose_ways(t_inf *info, t_graph *graph, t_way **start, t_moving *transp)
+void		choose_ways(t_inf *info, t_graph *graph, t_way **start, t_moving *transp)
 {
-	int 		i;
-	int 		j;
-	int 		ants;
-	int 		k;
+	int			i;
+	int			j;
+	int			ants;
+	int			k;
 
 	i = 0;
 	k = 0;
 	ants = info->ants;
 	while (i < info->ants)
 	{
-		j = 0;
-		while (j < graph->numb_ways)
+		j = -1;
+		while (++j < graph->numb_ways)
 		{
 			if (ants > how_much(graph->len_ways, j))
 			{
 				if_start((start), graph, j);
 				fill_transp(&transp[k], (start)[j]->content, i, j);
-				printf("ant %d, way %d \n", transp[k].ant, transp[k].way);
 				ants--;
 				i++;
 				k++;
 			}
 			else if (i == info->ants - 1)
-				break;
-			j++;
+				break ;
 		}
 		if (i == info->ants - 1)
 		{
@@ -122,12 +112,11 @@ void	choose_ways(t_inf *info, t_graph *graph, t_way **start, t_moving *transp)
 	}
 }
 
-void    move_ants(t_ways *res, t_inf *info, t_graph *graph)
+void		move_ants(t_ways *res, t_inf *info, t_graph *graph)
 {
 	t_way		**start;
 	t_way		**begin;
 	t_moving	*transp;
-
 
 	transp = (t_moving*)malloc(sizeof(t_way) * info->ants);
 	start = (t_way**)malloc(sizeof(t_way*) * graph->numb_ways);

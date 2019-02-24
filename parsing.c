@@ -40,7 +40,7 @@ void	write_room(t_fl *file, t_inf *info, int a, int *j)
     same_rooms(info, (*j));
 	info->room[(*j)].s_e = a;
 	ft_arrfree(mass);
-	printf("%s %d %d | %d %d\n", info->room[*j].name, info->room[*j].x, info->room[*j].y, *j, info->room[*j].s_e);
+//	printf("%s %d %d | %d %d\n", info->room[*j].name, info->room[*j].x, info->room[*j].y, *j, info->room[*j].s_e);
 	(*j)++;
 }
 
