@@ -204,6 +204,60 @@ bfs.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs.c.s
 .PHONY : bfs.c.s
 
+bfs_functions.o: bfs_functions.c.o
+
+.PHONY : bfs_functions.o
+
+# target to build an object file
+bfs_functions.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs_functions.c.o
+.PHONY : bfs_functions.c.o
+
+bfs_functions.i: bfs_functions.c.i
+
+.PHONY : bfs_functions.i
+
+# target to preprocess a source file
+bfs_functions.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs_functions.c.i
+.PHONY : bfs_functions.c.i
+
+bfs_functions.s: bfs_functions.c.s
+
+.PHONY : bfs_functions.s
+
+# target to generate assembly for a file
+bfs_functions.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs_functions.c.s
+.PHONY : bfs_functions.c.s
+
+bfs_functions2.o: bfs_functions2.c.o
+
+.PHONY : bfs_functions2.o
+
+# target to build an object file
+bfs_functions2.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs_functions2.c.o
+.PHONY : bfs_functions2.c.o
+
+bfs_functions2.i: bfs_functions2.c.i
+
+.PHONY : bfs_functions2.i
+
+# target to preprocess a source file
+bfs_functions2.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs_functions2.c.i
+.PHONY : bfs_functions2.c.i
+
+bfs_functions2.s: bfs_functions2.c.s
+
+.PHONY : bfs_functions2.s
+
+# target to generate assembly for a file
+bfs_functions2.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs_functions2.c.s
+.PHONY : bfs_functions2.c.s
+
 exit.o: exit.c.o
 
 .PHONY : exit.o
@@ -258,32 +312,59 @@ ft_strlen_chr.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/ft_strlen_chr.c.s
 .PHONY : ft_strlen_chr.c.s
 
-lem-in.o: lem-in.c.o
+graph_function.o: graph_function.c.o
 
-.PHONY : lem-in.o
+.PHONY : graph_function.o
 
 # target to build an object file
-lem-in.c.o:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem-in.c.o
-.PHONY : lem-in.c.o
+graph_function.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/graph_function.c.o
+.PHONY : graph_function.c.o
 
-lem-in.i: lem-in.c.i
+graph_function.i: graph_function.c.i
 
-.PHONY : lem-in.i
+.PHONY : graph_function.i
 
 # target to preprocess a source file
-lem-in.c.i:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem-in.c.i
-.PHONY : lem-in.c.i
+graph_function.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/graph_function.c.i
+.PHONY : graph_function.c.i
 
-lem-in.s: lem-in.c.s
+graph_function.s: graph_function.c.s
 
-.PHONY : lem-in.s
+.PHONY : graph_function.s
 
 # target to generate assembly for a file
-lem-in.c.s:
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem-in.c.s
-.PHONY : lem-in.c.s
+graph_function.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/graph_function.c.s
+.PHONY : graph_function.c.s
+
+lem_in.o: lem_in.c.o
+
+.PHONY : lem_in.o
+
+# target to build an object file
+lem_in.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_in.c.o
+.PHONY : lem_in.c.o
+
+lem_in.i: lem_in.c.i
+
+.PHONY : lem_in.i
+
+# target to preprocess a source file
+lem_in.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_in.c.i
+.PHONY : lem_in.c.i
+
+lem_in.s: lem_in.c.s
+
+.PHONY : lem_in.s
+
+# target to generate assembly for a file
+lem_in.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_in.c.s
+.PHONY : lem_in.c.s
 
 libft/ft_arrfree.o: libft/ft_arrfree.c.o
 
@@ -2895,15 +2976,24 @@ help:
 	@echo "... bfs.o"
 	@echo "... bfs.i"
 	@echo "... bfs.s"
+	@echo "... bfs_functions.o"
+	@echo "... bfs_functions.i"
+	@echo "... bfs_functions.s"
+	@echo "... bfs_functions2.o"
+	@echo "... bfs_functions2.i"
+	@echo "... bfs_functions2.s"
 	@echo "... exit.o"
 	@echo "... exit.i"
 	@echo "... exit.s"
 	@echo "... ft_strlen_chr.o"
 	@echo "... ft_strlen_chr.i"
 	@echo "... ft_strlen_chr.s"
-	@echo "... lem-in.o"
-	@echo "... lem-in.i"
-	@echo "... lem-in.s"
+	@echo "... graph_function.o"
+	@echo "... graph_function.i"
+	@echo "... graph_function.s"
+	@echo "... lem_in.o"
+	@echo "... lem_in.i"
+	@echo "... lem_in.s"
 	@echo "... libft/ft_arrfree.o"
 	@echo "... libft/ft_arrfree.i"
 	@echo "... libft/ft_arrfree.s"

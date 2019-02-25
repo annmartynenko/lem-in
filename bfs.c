@@ -71,7 +71,7 @@ void	fill_ways(t_way *start, t_ways **result, t_graph *graph)
 	buf->after = NULL;
 }
 
-void	check_edges(t_graph *graph, t_way *start, t_ways *queue, t_ways *result)
+void	check_edges(t_graph *graph, t_way *start, t_ways *queue, t_ways **result)
 {
 	int j;
 
@@ -86,7 +86,7 @@ void	check_edges(t_graph *graph, t_way *start, t_ways *queue, t_ways *result)
 			if (graph->neighbor != graph->end)
 				copy_way(queue, start, graph->neighbor);
 			else if (graph->neighbor == graph->end)
-				fill_ways(start, &result, graph);
+				fill_ways(start, result, graph);
 		}
 	}
 }
@@ -106,7 +106,7 @@ void	bfs(t_graph *graph, t_inf *info)
 	{
 		start = queue->ways;
 		move_and_check(queue, graph);
-		check_edges(graph, start, queue, result);
+		check_edges(graph, start, queue, &result);
 		tmp123 = queue->next;
 		clean_start(start);
 		free(queue);

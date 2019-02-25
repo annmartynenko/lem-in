@@ -46,11 +46,14 @@ int		main(int ac, char **av)
 	info.links = 0;
 	info.ways = 0;
 	info.lines = 0;
+	info.s_e = 0;
 	info.link = NULL;
-	if (ac > 1)
-		flags(ac, av, &info);
-	read_map(&info);
-	make_graph(&info);
+	if (ac != 0)
+//		flags(ac, av, &info);
+	{
+		read_map(&info, av);
+		make_graph(&info);
+	}
 //	system("leaks lem-in");
 	return (0);
 }

@@ -4,7 +4,7 @@ project(lem_in C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(lem_in
-        lem-in.c
+        lem_in.c
         read_map.c
         exit.c
         ft_strlen_chr.c
@@ -14,6 +14,9 @@ add_executable(lem_in
         move_ants.c
         additional_functions.c
         additional_functions2.c
+        bfs_functions.c
+        bfs_functions2.c
+        graph_function.c
         libft/ft_printf/extra_fun.c
         libft/ft_printf/find_flag.c
         libft/ft_printf/for_add.c

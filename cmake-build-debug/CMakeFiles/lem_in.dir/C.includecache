@@ -42,6 +42,18 @@ lem-in.h
 stdio.h
 -
 
+/Users/amartyne/lem-in/bfs_functions.c
+lem-in.h
+/Users/amartyne/lem-in/lem-in.h
+stdio.h
+-
+
+/Users/amartyne/lem-in/bfs_functions2.c
+lem-in.h
+/Users/amartyne/lem-in/lem-in.h
+stdio.h
+-
+
 /Users/amartyne/lem-in/exit.c
 lem-in.h
 /Users/amartyne/lem-in/lem-in.h
@@ -52,7 +64,7 @@ stdio.h
 lem-in.h
 /Users/amartyne/lem-in/lem-in.h
 
-/Users/amartyne/lem-in/lem-in.c
+/Users/amartyne/lem-in/graph_function.c
 lem-in.h
 /Users/amartyne/lem-in/lem-in.h
 stdio.h
@@ -71,6 +83,12 @@ sys/stat.h
 -
 ./libft/libft.h
 /Users/amartyne/lem-in/./libft/libft.h
+
+/Users/amartyne/lem-in/lem_in.c
+lem-in.h
+/Users/amartyne/lem-in/lem-in.h
+stdio.h
+-
 
 /Users/amartyne/lem-in/make_graph.c
 lem-in.h

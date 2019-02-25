@@ -26,6 +26,8 @@ t_graph	*create_graph(t_inf *info)
 	graph->current = 0;
 	graph->neighbor = 0;
 	graph->lines = 0;
+	graph->ants = 0;
+	graph->d = 0;
 	return (graph);
 }
 

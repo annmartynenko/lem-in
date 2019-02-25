@@ -26,7 +26,7 @@ void	print_ways(t_ways *res, t_inf *info)
 			ft_printf("%s-> ", info->room[tmp->content].name);
 			tmp = tmp->after;
 		}
-		ft_printf("%s\n", info->room[tmp->content].name);
+		ft_printf("%s\n \n", info->room[tmp->content].name);
 		res = res->next;
 	}
 	ft_printf("\n");
@@ -65,5 +65,17 @@ void	clean_start(t_way *start)
 		tmp = start->after;
 		free(start);
 		start = tmp;
+	}
+}
+
+void	clean_buf(t_fl **file, t_fl **buf)
+{
+	while ((*buf))
+	{
+		(*file) = (*buf)->next;
+		if ((*buf)->next)
+			free((*buf)->line);
+		free((*buf));
+		(*buf) = (*file);
 	}
 }

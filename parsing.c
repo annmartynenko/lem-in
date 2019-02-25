@@ -13,20 +13,20 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-void    same_rooms(t_inf *info, int j)
+void	same_rooms(t_inf *info, int j)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (i < j)
-    {
-        if (ft_strcmp(info->room[j].name, info->room[i].name) == 0)
-            exit_l("the same names of rooms");
-        if (info->room[j].x == info->room[i].x && \
-        info->room[j].y == info->room[i].y)
-            exit_l("rooms with the same coordinates ");
-        i++;
-    }
+	i = 0;
+	while (i < j)
+	{
+		if (ft_strcmp(info->room[j].name, info->room[i].name) == 0)
+			exit_l("the same names of rooms");
+		if (info->room[j].x == info->room[i].x && \
+		info->room[j].y == info->room[i].y)
+			exit_l("rooms with the same coordinates ");
+		i++;
+	}
 }
 
 void	write_room(t_fl *file, t_inf *info, int a, int *j)
@@ -37,7 +37,7 @@ void	write_room(t_fl *file, t_inf *info, int a, int *j)
 	info->room[(*j)].name = ft_strdup(mass[0]);
 	info->room[(*j)].x = ft_atoi(mass[1]);
 	info->room[(*j)].y = ft_atoi(mass[2]);
-    same_rooms(info, (*j));
+	same_rooms(info, (*j));
 	info->room[(*j)].s_e = a;
 	ft_arrfree(mass);
 //	printf("%s %d %d | %d %d\n", info->room[*j].name, info->room[*j].x, info->room[*j].y, *j, info->room[*j].s_e);
@@ -46,8 +46,8 @@ void	write_room(t_fl *file, t_inf *info, int a, int *j)
 
 void	write_link(t_fl *file, t_inf *info, int *i)
 {
-	char **mass;
-	int j;
+	char	**mass;
+	int		j;
 
 	j = 0;
 	info->link[(*i)].rm1 = -1;
@@ -71,37 +71,40 @@ void	write_link(t_fl *file, t_inf *info, int *i)
 	(*i)++;
 }
 
+void	pars_condition(t_fl **file, t_inf *info, int *i, int *j)
+{
+	if (ft_strcmp((*file)->line, "##start") == 0)
+	{
+		(*file) = (*file)->next;
+		write_room((*file), info, START, j);
+		info->s_e++;
+	}
+	else if (ft_strcmp((*file)->line, "##end") == 0)
+	{
+		(*file) = (*file)->next;
+		write_room((*file), info, END, j);
+		info->s_e++;
+	}
+	else if (ft_strchr((*file)->line, ' ') && (*file)->line[0] != '#')
+		write_room((*file), info, NORMAL, j);
+	else if (ft_strchr((*file)->line, '-'))
+		write_link((*file), info, i);
+}
+
 void	parsing(t_fl *file, t_inf *info)
 {
 	int i;
 	int j;
-	int s_e;
 
 	j = 0;
 	i = 0;
-	s_e = 0;
 	info->room = (t_room*)malloc(sizeof(t_room) * info->rooms);
 	info->link = (t_link*)malloc(sizeof(t_room) * info->links);
 	while (file && file->next)
 	{
-		if (ft_strcmp(file->line, "##start") == 0)
-		{
-			file = file->next;
-			write_room(file, info, START, &j);
-			s_e++;
-		}
-		else if (ft_strcmp(file->line, "##end") == 0)
-		{
-			file = file->next;
-			write_room(file, info, END, &j);
-			s_e++;
-		}
-		else if (ft_strchr(file->line, ' ') && file->line[0] != '#')
-			write_room(file, info, NORMAL, &j);
-		else if (ft_strchr(file->line, '-'))
-			write_link(file, info, &i);
+		pars_condition(&file, info, &i, &j);
 		file = file->next;
 	}
-	if (s_e != 2)
+	if (info->s_e != 2)
 		exit_l("no start or end mark");
 }

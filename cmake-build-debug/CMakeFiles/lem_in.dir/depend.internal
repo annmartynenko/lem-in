@@ -13,6 +13,14 @@ CMakeFiles/lem_in.dir/bfs.c.o
  /Users/amartyne/lem-in/./libft/libft.h
  /Users/amartyne/lem-in/bfs.c
  /Users/amartyne/lem-in/lem-in.h
+CMakeFiles/lem_in.dir/bfs_functions.c.o
+ /Users/amartyne/lem-in/./libft/libft.h
+ /Users/amartyne/lem-in/bfs_functions.c
+ /Users/amartyne/lem-in/lem-in.h
+CMakeFiles/lem_in.dir/bfs_functions2.c.o
+ /Users/amartyne/lem-in/./libft/libft.h
+ /Users/amartyne/lem-in/bfs_functions2.c
+ /Users/amartyne/lem-in/lem-in.h
 CMakeFiles/lem_in.dir/exit.c.o
  /Users/amartyne/lem-in/./libft/libft.h
  /Users/amartyne/lem-in/exit.c
@@ -21,10 +29,14 @@ CMakeFiles/lem_in.dir/ft_strlen_chr.c.o
  /Users/amartyne/lem-in/./libft/libft.h
  /Users/amartyne/lem-in/ft_strlen_chr.c
  /Users/amartyne/lem-in/lem-in.h
-CMakeFiles/lem_in.dir/lem-in.c.o
+CMakeFiles/lem_in.dir/graph_function.c.o
  /Users/amartyne/lem-in/./libft/libft.h
- /Users/amartyne/lem-in/lem-in.c
+ /Users/amartyne/lem-in/graph_function.c
  /Users/amartyne/lem-in/lem-in.h
+CMakeFiles/lem_in.dir/lem_in.c.o
+ /Users/amartyne/lem-in/./libft/libft.h
+ /Users/amartyne/lem-in/lem-in.h
+ /Users/amartyne/lem-in/lem_in.c
 CMakeFiles/lem_in.dir/libft/ft_arrfree.c.o
  /Users/amartyne/lem-in/libft/ft_arrfree.c
  /Users/amartyne/lem-in/libft/libft.h

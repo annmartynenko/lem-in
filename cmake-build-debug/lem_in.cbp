@@ -89,16 +89,22 @@
 		<Unit filename="/Users/amartyne/lem-in/bfs.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/amartyne/lem-in/bfs_functions.c">
+			<Option target="lem_in"/>
+		</Unit>
+		<Unit filename="/Users/amartyne/lem-in/bfs_functions2.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/amartyne/lem-in/exit.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/amartyne/lem-in/ft_strlen_chr.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/amartyne/lem-in/lem-in.c">
+		<Unit filename="/Users/amartyne/lem-in/graph_function.c">
 			<Option target="lem_in"/>
 		</Unit>
-		<Unit filename="/Users/amartyne/lem-in/lem-in.h">
+		<Unit filename="/Users/amartyne/lem-in/lem_in.c">
 			<Option target="lem_in"/>
 		</Unit>
 		<Unit filename="/Users/amartyne/lem-in/libft/ft_arrfree.c">

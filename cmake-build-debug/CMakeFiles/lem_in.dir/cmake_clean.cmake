@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lem_in.dir/lem-in.c.o"
+  "CMakeFiles/lem_in.dir/lem_in.c.o"
   "CMakeFiles/lem_in.dir/read_map.c.o"
   "CMakeFiles/lem_in.dir/exit.c.o"
   "CMakeFiles/lem_in.dir/ft_strlen_chr.c.o"
@@ -9,6 +9,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/move_ants.c.o"
   "CMakeFiles/lem_in.dir/additional_functions.c.o"
   "CMakeFiles/lem_in.dir/additional_functions2.c.o"
+  "CMakeFiles/lem_in.dir/bfs_functions.c.o"
+  "CMakeFiles/lem_in.dir/bfs_functions2.c.o"
+  "CMakeFiles/lem_in.dir/graph_function.c.o"
   "CMakeFiles/lem_in.dir/libft/ft_printf/extra_fun.c.o"
   "CMakeFiles/lem_in.dir/libft/ft_printf/find_flag.c.o"
   "CMakeFiles/lem_in.dir/libft/ft_printf/for_add.c.o"

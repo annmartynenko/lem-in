@@ -28,7 +28,7 @@ int 	how_much(int *len, int j)
 	return (how);
 }
 
-void	print(t_moving *transp, t_way *start, t_inf *info, int *k)
+void	print(t_move *transp, t_way *start, t_inf *info, int *k)
 {
 	ft_printf("L");
 	ft_printf("%d-%s ", (*transp).ant, info->room[start->content].name);
@@ -37,7 +37,7 @@ void	print(t_moving *transp, t_way *start, t_inf *info, int *k)
 	(*k)++;
 }
 
-void	first_action(t_moving *transp, t_way **start, t_graph *graph, int *k)
+void	first_action(t_move *transp, t_way **start, t_graph *graph, int *k)
 {
 	while ((*start)->content != transp[(*k)].room)
 		(*start) = (*start)->after;
@@ -45,16 +45,20 @@ void	first_action(t_moving *transp, t_way **start, t_graph *graph, int *k)
 		(*k)++;
 }
 
-void	fill_buf(t_graph *graph, t_way **start, t_way **buf)
+t_way	**fill_buf(t_graph *graph, t_way **start)
 {
-	int d;
+	t_way	**buf;
+	int		d;
 
+	graph->ants = 0;
+	buf = (t_way**)malloc(sizeof(t_way*) * graph->numb_ways);
 	d = 0;
 	while (d < graph->numb_ways)
 	{
 		buf[d] = start[d];
 		d++;
 	}
+	return (buf);
 }
 
 void	new_line(int *k, int *lines)

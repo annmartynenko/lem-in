@@ -13,6 +13,14 @@ CMakeFiles/lem_in.dir/bfs.c.o: .././libft/libft.h
 CMakeFiles/lem_in.dir/bfs.c.o: ../bfs.c
 CMakeFiles/lem_in.dir/bfs.c.o: ../lem-in.h
 
+CMakeFiles/lem_in.dir/bfs_functions.c.o: .././libft/libft.h
+CMakeFiles/lem_in.dir/bfs_functions.c.o: ../bfs_functions.c
+CMakeFiles/lem_in.dir/bfs_functions.c.o: ../lem-in.h
+
+CMakeFiles/lem_in.dir/bfs_functions2.c.o: .././libft/libft.h
+CMakeFiles/lem_in.dir/bfs_functions2.c.o: ../bfs_functions2.c
+CMakeFiles/lem_in.dir/bfs_functions2.c.o: ../lem-in.h
+
 CMakeFiles/lem_in.dir/exit.c.o: .././libft/libft.h
 CMakeFiles/lem_in.dir/exit.c.o: ../exit.c
 CMakeFiles/lem_in.dir/exit.c.o: ../lem-in.h
@@ -21,9 +29,13 @@ CMakeFiles/lem_in.dir/ft_strlen_chr.c.o: .././libft/libft.h
 CMakeFiles/lem_in.dir/ft_strlen_chr.c.o: ../ft_strlen_chr.c
 CMakeFiles/lem_in.dir/ft_strlen_chr.c.o: ../lem-in.h
 
-CMakeFiles/lem_in.dir/lem-in.c.o: .././libft/libft.h
-CMakeFiles/lem_in.dir/lem-in.c.o: ../lem-in.c
-CMakeFiles/lem_in.dir/lem-in.c.o: ../lem-in.h
+CMakeFiles/lem_in.dir/graph_function.c.o: .././libft/libft.h
+CMakeFiles/lem_in.dir/graph_function.c.o: ../graph_function.c
+CMakeFiles/lem_in.dir/graph_function.c.o: ../lem-in.h
+
+CMakeFiles/lem_in.dir/lem_in.c.o: .././libft/libft.h
+CMakeFiles/lem_in.dir/lem_in.c.o: ../lem-in.h
+CMakeFiles/lem_in.dir/lem_in.c.o: ../lem_in.c
 
 CMakeFiles/lem_in.dir/libft/ft_arrfree.c.o: ../libft/ft_arrfree.c
 CMakeFiles/lem_in.dir/libft/ft_arrfree.c.o: ../libft/libft.h

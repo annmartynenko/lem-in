@@ -13,11 +13,12 @@
 #include "lem-in.h"
 #include <stdio.h>
 
-void	fill_transp(t_moving *transp, int room, int i, int j)
+void	fill_transp(t_move *transp, int room, int *i, int j)
 {
 	(transp)->room = room;
-	(transp)->ant = i + 1;
+	(transp)->ant = (*i) + 1;
 	(transp)->way = j;
+	(*i)++;
 }
 
 void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res)
@@ -25,6 +26,7 @@ void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res)
 	int i;
 
 	i = 0;
+	printf("numb ways %d \n", graph->numb_ways);
 	while (i < graph->numb_ways)
 	{
 		(start)[i] = res->ways;
@@ -32,6 +34,7 @@ void	start_begin(t_graph *graph, t_way **start, t_way **begin, t_ways *res)
 		res = res->next;
 		i++;
 	}
+	printf("END\n");
 }
 
 void	if_start(t_way **start, t_graph *graph, int j)
