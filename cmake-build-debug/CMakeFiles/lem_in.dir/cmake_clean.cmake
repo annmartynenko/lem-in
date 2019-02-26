@@ -12,6 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/bfs_functions.c.o"
   "CMakeFiles/lem_in.dir/bfs_functions2.c.o"
   "CMakeFiles/lem_in.dir/graph_function.c.o"
+  "CMakeFiles/lem_in.dir/color.c.o"
   "CMakeFiles/lem_in.dir/libft/ft_printf/extra_fun.c.o"
   "CMakeFiles/lem_in.dir/libft/ft_printf/find_flag.c.o"
   "CMakeFiles/lem_in.dir/libft/ft_printf/for_add.c.o"

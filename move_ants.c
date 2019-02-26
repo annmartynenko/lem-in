@@ -67,6 +67,7 @@ void	run(t_move *transp, t_inf *info, t_way **start, t_graph *graph)
 			print(&transp[graph->ants], start[graph->d], info, &graph->ants);
 		}
 	}
+	new_line(&graph->ants, &graph->lines);
 	free(buf);
 }
 
@@ -117,5 +118,9 @@ void	move_ants(t_ways *res, t_inf *info, t_graph *graph)
 	free(begin);
 	free(start);
 	if (info->lines == 1)
-		ft_printf("\n\nlines = %d\n", graph->lines);
+	{
+		ft_printf("\033[01;33m");
+		ft_printf("\nlines = %d\n", graph->lines);
+		ft_printf("\033[0m");
+	}
 }

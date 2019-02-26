@@ -95,6 +95,9 @@
 		<Unit filename="/Users/amartyne/lem-in/bfs_functions2.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/amartyne/lem-in/color.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/amartyne/lem-in/exit.c">
 			<Option target="lem_in"/>
 		</Unit>

@@ -39,6 +39,7 @@ void	write_room(t_fl *file, t_inf *info, int a, int *j)
 	info->room[(*j)].y = ft_atoi(mass[2]);
 	same_rooms(info, (*j));
 	info->room[(*j)].s_e = a;
+	info->room[(*j)].color = -1;
 	ft_arrfree(mass);
 //	printf("%s %d %d | %d %d\n", info->room[*j].name, info->room[*j].x, info->room[*j].y, *j, info->room[*j].s_e);
 	(*j)++;

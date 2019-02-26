@@ -30,6 +30,7 @@ typedef struct	s_room
 	int			x;
 	int			y;
 	int			s_e;
+	int 		color;
 }				t_room;
 
 typedef struct	s_link
@@ -46,6 +47,8 @@ typedef struct	s_inf
 	int			ways;
 	int 		s_e;
 	int			lines;
+	int			c;
+	char 		**color;
 	t_room		*room;
 	t_link		*link;
 }				t_inf;
@@ -73,6 +76,7 @@ typedef struct 		s_graph
 	int				numb_ways;
 	int 			current;
 	int 			neighbor;
+	int 			parent;
 	int 			lines;
 	int 			ants;
 	int 			d;
@@ -99,7 +103,7 @@ typedef struct		s_move
 	int				way;
 }					t_move;
 
-void				read_map(t_inf *info, char **av);
+void				read_map(t_inf *info);
 void				exit_l(char *str);
 size_t				ft_strlen_chr(const char *s, int c);
 void				parsing(t_fl *file, t_inf *info);
@@ -126,5 +130,6 @@ void				find_se(t_graph **graph, t_inf *info);
 int					count_edges(t_inf *info, int i);
 void				links(t_graph *graph, t_inf *info, int i);
 void				clean_buf(t_fl **file, t_fl **buf);
-
+void				fill_ways(t_way *start, t_ways **result, t_graph *graph, t_inf *info);
+char				**create_color();
 #endif

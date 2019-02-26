@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/amartyne/lem-in/bfs.c" "/Users/amartyne/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/bfs.c.o"
   "/Users/amartyne/lem-in/bfs_functions.c" "/Users/amartyne/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/bfs_functions.c.o"
   "/Users/amartyne/lem-in/bfs_functions2.c" "/Users/amartyne/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/bfs_functions2.c.o"
+  "/Users/amartyne/lem-in/color.c" "/Users/amartyne/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/color.c.o"
   "/Users/amartyne/lem-in/exit.c" "/Users/amartyne/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/exit.c.o"
   "/Users/amartyne/lem-in/ft_strlen_chr.c" "/Users/amartyne/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/ft_strlen_chr.c.o"
   "/Users/amartyne/lem-in/graph_function.c" "/Users/amartyne/lem-in/cmake-build-debug/CMakeFiles/lem_in.dir/graph_function.c.o"

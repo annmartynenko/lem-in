@@ -258,6 +258,33 @@ bfs_functions2.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/bfs_functions2.c.s
 .PHONY : bfs_functions2.c.s
 
+color.o: color.c.o
+
+.PHONY : color.o
+
+# target to build an object file
+color.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/color.c.o
+.PHONY : color.c.o
+
+color.i: color.c.i
+
+.PHONY : color.i
+
+# target to preprocess a source file
+color.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/color.c.i
+.PHONY : color.c.i
+
+color.s: color.c.s
+
+.PHONY : color.s
+
+# target to generate assembly for a file
+color.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/color.c.s
+.PHONY : color.c.s
+
 exit.o: exit.c.o
 
 .PHONY : exit.o
@@ -2982,6 +3009,9 @@ help:
 	@echo "... bfs_functions2.o"
 	@echo "... bfs_functions2.i"
 	@echo "... bfs_functions2.s"
+	@echo "... color.o"
+	@echo "... color.i"
+	@echo "... color.s"
 	@echo "... exit.o"
 	@echo "... exit.i"
 	@echo "... exit.s"

@@ -17,6 +17,7 @@ add_executable(lem_in
         bfs_functions.c
         bfs_functions2.c
         graph_function.c
+        color.c
         libft/ft_printf/extra_fun.c
         libft/ft_printf/find_flag.c
         libft/ft_printf/for_add.c

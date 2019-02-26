@@ -28,6 +28,7 @@ t_graph	*create_graph(t_inf *info)
 	graph->lines = 0;
 	graph->ants = 0;
 	graph->d = 0;
+	graph->parent = 0;
 	return (graph);
 }
 

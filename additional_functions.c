@@ -30,6 +30,14 @@ int 	how_much(int *len, int j)
 
 void	print(t_move *transp, t_way *start, t_inf *info, int *k)
 {
+	if (info->c == 12)
+		info->c = 0;
+	if (info->room[(*transp).ant].color == -1)
+	{
+		info->room[(*transp).ant].color = info->c;
+		info->c++;
+	}
+	ft_printf(info->color[info->room[(*transp).ant].color]);
 	ft_printf("L");
 	ft_printf("%d-%s ", (*transp).ant, info->room[start->content].name);
 	start->ant = (*transp).ant;
@@ -64,6 +72,7 @@ t_way	**fill_buf(t_graph *graph, t_way **start)
 void	new_line(int *k, int *lines)
 {
 	ft_printf("\n");
+	ft_printf("\033[0m");
 	(*k) = 0;
 	(*lines)++;
 }

@@ -48,12 +48,14 @@ int		main(int ac, char **av)
 	info.lines = 0;
 	info.s_e = 0;
 	info.link = NULL;
-	if (ac != 0)
-//		flags(ac, av, &info);
+	info.color = create_color();
+	info.c = 0;
+	if (ac > 1)
 	{
-		read_map(&info, av);
-		make_graph(&info);
+		flags(ac, av, &info);
 	}
+	read_map(&info);
+	make_graph(&info);
 //	system("leaks lem-in");
 	return (0);
 }

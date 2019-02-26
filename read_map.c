@@ -91,7 +91,7 @@ void	record(t_inf *info, char **line, char *tmp)
 	(*line) = ft_strdup(tmp);
 }
 
-void	read_map(t_inf *info, char **av)
+void	read_map(t_inf *info)
 {
 	char *tmp;
 	t_fl *file;
@@ -99,7 +99,8 @@ void	read_map(t_inf *info, char **av)
 	int fd;
 
 	tmp = NULL;
-	fd = open(av[1], O_RDONLY);
+	fd = 0;
+//	fd = open(av[1], O_RDONLY);
 	check_ants(fd, info);
 	file = (t_fl*)malloc(sizeof(t_fl));
 	file->next = NULL;
